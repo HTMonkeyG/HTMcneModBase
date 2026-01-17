@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{5790cb68-a422-41c0-bbc4-4a4df786ece9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries">
+      <UniqueIdentifier>{b404c73a-97b8-4528-a5dd-48107fa7ff41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game">
+      <UniqueIdentifier>{c5088ccd-34a7-4a2b-aab9-b1bd46bb21b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\net">
+      <UniqueIdentifier>{77b2fa0e-1650-42a6-bdf8-1640649cbd31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\game\net\packet">
+      <UniqueIdentifier>{2624ea86-ab00-4d66-9b57-6a8a4351ce3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\includes">
+      <UniqueIdentifier>{2f745bea-3f6c-4105-89b2-baba0f12a173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader">
+      <UniqueIdentifier>{6c32c039-09c3-473c-aaa6-9634345608be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes">
+      <UniqueIdentifier>{8982074c-5227-4fd4-9938-021238f79f02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes\htmodloader">
+      <UniqueIdentifier>{11bced2c-f890-4729-b1c4-88f964e5ca91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes\htmodloader\includes">
+      <UniqueIdentifier>{bea7c51b-b6e6-4292-b707-8e39b7d07ac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes\htmodloader\includes\backends">
+      <UniqueIdentifier>{85deba21-3ea0-44fd-b8de-1ad881a2eb2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\mod">
+      <UniqueIdentifier>{6b11db9f-82a6-4a36-aed6-558c62720f47}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\dllmain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\net\packet\packet.cpp">
+      <Filter>src\game\net\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\mod.cpp">
+      <Filter>src\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\setup.cpp">
+      <Filter>src\mod</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\net\sender.cpp">
+      <Filter>src\game\net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\net\filter.cpp">
+      <Filter>src\game\net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\net\packet\textPacket.cpp">
+      <Filter>src\game\net\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\net\receiver.cpp">
+      <Filter>src\game\net</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\includes\htmcb.h">
+      <Filter>src\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mcb_internal.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htconfig.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htmod.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htmodloader.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_mcbe.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_opengl3.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_sky.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_vklayer.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
