@@ -1,0 +1,13 @@
+{
+  "package_name": "htmcb",
+  "version": "0.1.0",
+  "game_edition": 4,
+  "mod_name": "HTMcneModBase",
+  "description": "Minecraft NE mod base.",
+  "main": "htmcb.dll",
+  "dependencies": {},
+  "keywords": [],
+  "author": "HTMonkeyG",
+  "license": "MIT",
+  "website": ""
+}
