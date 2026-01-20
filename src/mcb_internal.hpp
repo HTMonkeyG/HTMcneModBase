@@ -14,7 +14,7 @@
 #include "htmcb.h"
 
 // ----------------------------------------------------------------------------
-// [SECTION] TYPE_ALIASES
+// [SECTION] DEFINES
 // ----------------------------------------------------------------------------
 
 #define i08 char
@@ -42,6 +42,9 @@ extern HMODULE hModuleDll;
 
 // Thread id of the main thread.
 extern DWORD gMainThreadId;
+
+// ImGui ready flag.
+extern bool gGuiReady;
 
 // Initializer class.
 class McbiModInitializer {
@@ -103,6 +106,30 @@ private:
   McbiModInitializer &operator=(const McbiModInitializer &) = delete;
 };
 
+// Scan and create hook.
+static inline HTStatus mcbiSigScanAndCreateHook(
+  HMODULE hModuleDll,
+  const HTAsmSig *sigXX,
+  HTAsmFunction *sfn
+) {
+  HTStatus s;
+
+  if (!HTSigScanFunc(sigXX, sfn))
+    return HT_FAIL;
+
+  s = HTAsmHookCreate(
+    hModuleDll,
+    sfn);
+  if (!s)
+    return HT_FAIL;
+
+  s = HTAsmHookEnable(
+    hModuleDll,
+    sfn->fn);
+
+  return s;
+}
+
 // ----------------------------------------------------------------------------
 // [SECTION] GAME/NET
 // ----------------------------------------------------------------------------
@@ -117,7 +144,7 @@ McbPacketFilterResult mcbiFilterIncomingPacket(
   Packet *packet);
 
 // ----------------------------------------------------------------------------
-// [SECTION] GAME/NET/PACKET
+// [SECTION] GAME/NET/PACKET/PACKET
 // ----------------------------------------------------------------------------
 
 // Abstract base class for data packets, copied from the game.
@@ -155,6 +182,10 @@ public:
   u64 unk_3;
 };
 
+// ----------------------------------------------------------------------------
+// [SECTION] GAME/NET/PACKET/TEXT_PACKET
+// ----------------------------------------------------------------------------
+
 typedef u08 TextPacketMessageType;
 enum TextPacketMessageType_ {
   TextPacketMessageType_Chat = 1,
@@ -179,9 +210,48 @@ public:
   std::string filteredMessage;
 };
 
+// ----------------------------------------------------------------------------
+// [SECTION] GAME/NET/PACKET/COMMAND_REQUEST_PACKET
+// ----------------------------------------------------------------------------
+
+typedef struct CommandOriginData_ CommandOriginData;
+struct CommandOriginData_ {
+  i32 commandType;
+  u64 uuid[2];
+  std::string requestId;
+  u64 playerId;
+};
+
 struct CommandRequestPacket_: Packet {
 public:
+  CommandRequestPacket_();
+
   std::string command;
+  CommandOriginData commandOriginData;
+  int version;
+  bool isInternalSource;
 };
+
+// ----------------------------------------------------------------------------
+// [SECTION] GAME/NET/PACKET/ADD_PLAYER_PACKET
+// ----------------------------------------------------------------------------
+
+struct AddPlayerPacket_: Packet {
+public:
+  AddPlayerPacket_();
+
+  u64 uuid[2];
+  std::string playerName;
+  u64 actorRuntimeId;
+  std::string platformChatId;
+  f32 position[3];
+  f32 velocity[3];
+  f32 rotation[2];
+  f32 yHeadRotation;
+};
+
+// ----------------------------------------------------------------------------
+// [SECTION] GAME/NET/PACKET/COMMAND_OUTPUT_PACKET
+// ----------------------------------------------------------------------------
 
 #endif

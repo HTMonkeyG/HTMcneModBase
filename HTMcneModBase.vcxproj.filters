@@ -37,6 +37,9 @@
     <Filter Include="src\mod">
       <UniqueIdentifier>{6b11db9f-82a6-4a36-aed6-558c62720f47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libraries\imgui-1.92.2b">
+      <UniqueIdentifier>{7b92e023-6acd-48d2-80de-ba97b9f51bda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -62,6 +65,18 @@
     </ClCompile>
     <ClCompile Include="src\game\net\receiver.cpp">
       <Filter>src\game\net</Filter>
+    </ClCompile>
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui_draw.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui_tables.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui_widgets.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +106,24 @@
     </ClInclude>
     <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_vklayer.h">
       <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\imgui-1.92.2b\imconfig.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\imgui-1.92.2b\imgui.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\imgui-1.92.2b\imgui_internal.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\imgui-1.92.2b\imstb_rectpack.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\imgui-1.92.2b\imstb_textedit.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="libraries\imgui-1.92.2b\imstb_truetype.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

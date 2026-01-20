@@ -1,11 +1,11 @@
 // ----------------------------------------------------------------------------
-// HTSkyModBase
-// - A Simple mod developed for exporting in-game funtions of Sky: CotL.
-// <https://www.github.com/HTMonkeyG/HTSkyModBase>
+// HTMcneModBase
+// - A Simple mod developed for exporting in-game funtions of Minecraft.
+// <https://www.github.com/HTMonkeyG/HTMcneModBase>
 //
 // MIT License
 //
-// Copyright (c) 2025 HTMonkeyG
+// Copyright (c) 2026 HTMonkeyG
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -52,12 +52,39 @@ extern "C" {
 #define mcbNamespace "htmcb"
 #define mcbMakeNamespace(literal) mcbNamespace ":" literal
 
+// Events
+#define mcbEventMainLoop mcbMakeNamespace("mainLoop")
+
 // ----------------------------------------------------------------------------
 // [SECTION] GAME/NET/PACKET
 // ----------------------------------------------------------------------------
 
-// Data packet base class.
+// Part of bedrock-protocol 785.
+
+// Data packet base class (0).
 typedef struct Packet_ Packet;
+
+// Text packet (9).
+//
+// Used for commands, messages, and other info printed to the screen. Most of
+// which are server->client or server broadcasted to all clients.
+typedef struct TextPacket_ TextPacket;
+
+// Add player packet (12).
+//
+// A new player joins the game; the server sends this packet to the other
+// players.
+typedef struct AddPlayerPacket_ AddPlayerPacket;
+
+// Command request packet (77).
+//
+// "slash" command execution, client to server.
+typedef struct CommandRequestPacket_ CommandRequestPacket;
+
+// Command output packet (79).
+//
+// "slash" command execution, server to client.
+typedef struct CommandOutputPacket_ CommandOutputPacket;
 
 // Send a packet to the server.
 MCB_API_ATTR HTStatus MCB_API mcbPacketSendToServer(
@@ -121,7 +148,19 @@ MCB_API_ATTR HTStatus MCB_API mcbPacketFilterUnregister(
   McbPacketFilterType type,
   PFN_mcbPacketFilter filter);
 
-typedef struct TextPacket_ TextPacket;
+// ----------------------------------------------------------------------------
+// [SECTION] SRC/GAME/TEXT_MESSAGE
+// ----------------------------------------------------------------------------
+
+// Send a chat message to the host, just like sending in the chat menu.
+//
+// Message must not longer than 65535 bytes length. Set maxLen to 0 to allow the
+// function to determine the message length by itself.
+//
+// If the message contains '\0', be sure to set maxlen to the buffer length.
+MCB_API_ATTR HTStatus MCB_API mcbSendChatMessage(
+  LPCSTR message,
+  UINT32 maxLen);
 
 #ifdef __cplusplus
 }

@@ -58,20 +58,12 @@ static HTStatus fnInit_LoopbackPacketSender(
   (void)hModuleDll;
   (void)self;
 
-  HTSigScanFunc(
-    &sig_LoopbackPacketSender_send,
-    &sfn_LoopbackPacketSender_send);
-
   sfn_LoopbackPacketSender_send.detour = (LPVOID)hook_LoopbackPacketSender_send;
 
-  HTAsmHookCreate(
+  return mcbiSigScanAndCreateHook(
     hModuleDll,
+    &sig_LoopbackPacketSender_send,
     &sfn_LoopbackPacketSender_send);
-  HTAsmHookEnable(
-    hModuleDll,
-    sfn_LoopbackPacketSender_send.fn);
-
-  return HT_SUCCESS;
 }
 
 static inline void savePacketSender(

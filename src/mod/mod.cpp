@@ -1,7 +1,10 @@
+#include "imgui.h"
+
 #include "mcb_internal.hpp"
 #include "includes/htmod.h"
 
 DWORD gMainThreadId = 0;
+bool gGuiReady = false;
 
 __declspec(dllexport) HTStatus HTMLAPI HTModOnInit(
   void *reserved
@@ -18,6 +21,21 @@ __declspec(dllexport) HTStatus HTMLAPI HTModOnInit(
 __declspec(dllexport) HTStatus HTMLAPI HTModOnEnable(
   void *reserved
 ) {
+  HTImGuiContexts guiContext;
+
+  HTImGuiDispatch(
+    &guiContext);
+
+  ImGui::SetAllocatorFunctions(
+    (ImGuiMemAllocFunc)guiContext.pImAllocatorAllocFunc,
+    (ImGuiMemFreeFunc)guiContext.pImAllocatorFreeFunc,
+    guiContext.pImAllocatorUserData);
+
+  ImGui::SetCurrentContext(
+    (ImGuiContext *)guiContext.pImGui);
+
+  gGuiReady = true;
+
   return HT_SUCCESS;
 }
 

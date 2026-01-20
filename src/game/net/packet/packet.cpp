@@ -70,27 +70,27 @@ Packet::~Packet_() { }
 
 i32 Packet::getId() {
   return 0;
-};
+}
 
 std::string Packet::getName() {
   return "";
-};
+}
 
 void *Packet::unknown_1() {
   return nullptr;
-};
+}
 
 void *Packet::write(
   void *
 ) {
   return nullptr;
-};
+}
 
 void *Packet::read(
   void *
 ) {
   return nullptr;
-};
+}
 
 u08 Packet::unknown_2() {
   return 0;

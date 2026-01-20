@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui.cpp" />
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui_draw.cpp" />
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui_tables.cpp" />
+    <ClCompile Include="libraries\imgui-1.92.2b\imgui_widgets.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\game\net\filter.cpp" />
     <ClCompile Include="src\game\net\packet\packet.cpp" />
@@ -36,6 +40,12 @@
     <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htconfig.h" />
     <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htmod.h" />
     <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htmodloader.h" />
+    <ClInclude Include="libraries\imgui-1.92.2b\imconfig.h" />
+    <ClInclude Include="libraries\imgui-1.92.2b\imgui.h" />
+    <ClInclude Include="libraries\imgui-1.92.2b\imgui_internal.h" />
+    <ClInclude Include="libraries\imgui-1.92.2b\imstb_rectpack.h" />
+    <ClInclude Include="libraries\imgui-1.92.2b\imstb_textedit.h" />
+    <ClInclude Include="libraries\imgui-1.92.2b\imstb_truetype.h" />
     <ClInclude Include="src\includes\htmcb.h" />
     <ClInclude Include="src\mcb_internal.hpp" />
   </ItemGroup>
@@ -121,8 +131,8 @@
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;HTMCNEMODBASE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>MCB_API_ATTR=__declspec(dllexport)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
@@ -134,8 +144,9 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <CallingConvention>FastCall</CallingConvention>
-      <AdditionalIncludeDirectories>$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)libraries\imgui-1.92.2b;$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,8 +178,8 @@
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;HTMCNEMODBASE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>MCB_API_ATTR=__declspec(dllexport)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
@@ -180,8 +191,9 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <CallingConvention>FastCall</CallingConvention>
-      <AdditionalIncludeDirectories>$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(projectDir)libraries\imgui-1.92.2b;$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

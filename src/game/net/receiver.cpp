@@ -31,9 +31,11 @@ static McbiModInitializer gInit_Packetize{
 
 static const HTAsmSig sigE8_Packet_readNoHeader{
   .sig =
-    "4D 8B 46 ?  48 8D 54 24 ?  48 8B 09 E8 ",
+    //"4D 8B 46 ?  48 8D 54 24 ?  48 8B 09 E8 ",
+    "49 8B 06 4D 8B 4E 20 4D 8B 46 18 48 8D 55 ?  48 "
+    "8B 08 E8 ?  ?  ?  ?  48 8B D0 ",
   .indirect = HT_SCAN_E8,
-  .offset = 0x0C
+  .offset = 0x12
 };
 
 static HTAsmFunction sfn_Packet_readNoHeader{
@@ -57,20 +59,12 @@ static HTStatus fnInit_Packetize(
   (void)hModuleDll;
   (void)self;
 
-  HTSigScanFunc(
-    &sigE8_Packet_readNoHeader,
-    &sfn_Packet_readNoHeader);
-
   sfn_Packet_readNoHeader.detour = (LPVOID)hook_Packet_readNoHeader;
 
-  HTAsmHookCreate(
+  return mcbiSigScanAndCreateHook(
     hModuleDll,
+    &sigE8_Packet_readNoHeader,
     &sfn_Packet_readNoHeader);
-  HTAsmHookEnable(
-    hModuleDll,
-    sfn_Packet_readNoHeader.fn);
-
-  return HT_SUCCESS;
 }
 
 static void *hook_Packet_readNoHeader(
