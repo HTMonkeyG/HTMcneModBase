@@ -1,5 +1,7 @@
 #include "mcb_internal.hpp"
 
+#pragma warning(disable: 26495)
+
 // ----------------------------------------------------------------------------
 // [SECTION] TEXT_PACKET_INIT
 // ----------------------------------------------------------------------------
@@ -23,10 +25,10 @@ static McbiModInitializer gInit_TextPacket{
 
 static const HTAsmSig sigE8_TextPacket_TextPacket{
   .sig =
-    "E8 ?  ?  ?  ?  90 C6 45 F0 05 48 8D 55 98 48 83 "
-    "7D ?  ? ",
+    "41 B8 00 01 00 00 48 8D 4D ?  E8 ?  ?  ?  ?  48 "
+    "8D 4D ?  E8 ",
   .indirect = HT_SCAN_E8,
-  .offset = 0x00
+  .offset = 0x13
 };
 
 static PFN_TextPacket_TextPacket fn_TextPacket_TextPacket = nullptr;
@@ -43,7 +45,9 @@ static HTStatus fnInit_TextPacket(
   fn_TextPacket_TextPacket = (PFN_TextPacket_TextPacket)HTSigScan(
     &sigE8_TextPacket_TextPacket);
 
-  return HT_SUCCESS;
+  return fn_TextPacket_TextPacket
+    ? HT_SUCCESS
+    : HT_FAIL;
 }
 
 // ----------------------------------------------------------------------------

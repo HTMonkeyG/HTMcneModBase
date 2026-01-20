@@ -7,6 +7,8 @@
 
 #include "mcb_internal.hpp"
 
+#pragma warning(disable: 26495)
+
 // ----------------------------------------------------------------------------
 // [SECTION] PACKET_INIT
 // ----------------------------------------------------------------------------
@@ -50,7 +52,9 @@ static HTStatus fnInit_Packet(
   fn_Packet_Packet = (PFN_Packet_Packet)HTSigScan(
     &sigE8_Packet_Packet);
 
-  return HT_SUCCESS;
+  return fn_Packet_Packet
+    ? HT_SUCCESS
+    : HT_FAIL;
 }
 
 // ----------------------------------------------------------------------------
@@ -110,4 +114,14 @@ void *Packet::_read(
 // [SECTION] PACKET_EXPORT
 // ----------------------------------------------------------------------------
 
+MCB_API_ATTR Packet *MCB_API mcbCreatePacket(
+  McPacketId id
+) {
+  return nullptr;
+}
 
+MCB_API_ATTR void MCB_API mcbDestroyPacket(
+  Packet *packet
+) {
+  ;
+}

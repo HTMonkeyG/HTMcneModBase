@@ -1,3 +1,9 @@
+// ----------------------------------------------------------------------------
+// mod/setup.cpp
+//
+// - Mod initializer.
+// ----------------------------------------------------------------------------
+
 #include "mcb_internal.hpp"
 
 HTStatus McbiModInitializer::setupAll(
@@ -10,8 +16,12 @@ HTStatus McbiModInitializer::setupAll(
     p;
     p = p->getPrev()
   ) {
-    if (!(*p)(hModuleDll))
+    HTStatus r = (*p)(hModuleDll);
+
+    if (!r) {
+      mcbLogE("Failed to initialize %s", p->getName());
       s = HT_FAIL;
+    }
   }
 
   return s;

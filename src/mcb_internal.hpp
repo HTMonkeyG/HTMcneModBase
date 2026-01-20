@@ -33,6 +33,11 @@
 #define DCAST(type) dynamic_cast<type>
 #define RCAST(type) reinterpret_cast<type>
 
+#define mcbLogP(prefix, text, ...) HTTellText("[htmcb]" prefix " " text, ##__VA_ARGS__)
+#define mcbLogI(text, ...) HTTellText("[htmcb]§f[INFO] " text, ##__VA_ARGS__)
+#define mcbLogW(text, ...) HTTellText("[htmcb]§e[WARN] " text, ##__VA_ARGS__)
+#define mcbLogE(text, ...) HTTellText("[htmcb]§c[ERR] " text, ##__VA_ARGS__)
+
 // ----------------------------------------------------------------------------
 // [SECTION] MOD
 // ----------------------------------------------------------------------------
@@ -186,6 +191,73 @@ McbPacketFilterResult mcbiFilterOutgoingPacket(
 McbPacketFilterResult mcbiFilterIncomingPacket(
   McbPacketSource source,
   Packet *packet);
+
+// ----------------------------------------------------------------------------
+// [SECTION] GAME/NET/PACKET/FIELDS
+// ----------------------------------------------------------------------------
+
+
+
+/*
+// Initializer class especially for packet fields.
+class McbiPacketFields {
+public:
+  using PFN_DoInit = HTStatus (*)(
+    HMODULE, const McbiModInitializer *);
+
+  static inline const McbiModInitializer *list() {
+    return McbiModInitializer::p;
+  }
+
+  static HTStatus setupAll(
+    HMODULE hModuleDll);
+
+  // Register a initializer.
+  McbiPacketFields(
+    const char *packetName,
+    McPacketId packetId,
+  ) 
+    : function(_function)
+    , name(_name)
+  {
+    prev = McbiPacketFields::p;
+    McbiPacketFields::p = this;
+  }
+
+  ~McbiPacketFields() = default;
+
+  inline const McbiPacketFields *getPrev() const {
+    return prev;
+  }
+
+  inline const char *getName() const {
+    return name;
+  }
+
+  HTStatus operator()(
+    HMODULE hModuleDll
+  ) const {
+    if (function)
+      return function(hModuleDll, this);
+    else
+      return HT_FAIL;
+  }
+
+private:
+  static inline McbiPacketFields *p = nullptr;
+
+  McbiPacketFields *prev;
+  PFN_DoInit function;
+  const char *name;
+
+  void *operator new(size_t) = delete;
+  static void* operator new[](size_t) = delete;
+  void operator delete(void *) = delete;
+  void operator delete[](void *) = delete;
+
+  McbiPacketFields(const McbiPacketFields &) = delete;
+  McbiPacketFields &operator=(const McbiPacketFields &) = delete;
+};*/
 
 // ----------------------------------------------------------------------------
 // [SECTION] GAME/NET/PACKET/PACKET

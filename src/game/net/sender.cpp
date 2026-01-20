@@ -76,14 +76,14 @@ static inline void savePacketSender(
     i08 isServer = *((i08 *)sender + 40);
     if (isServer && isServer != -1) {
       gLoopbackPacketSenderS = sender;
-      HTTellText("[htmcb] gLoopbackPacketSenderS = 0x%p", gLoopbackPacketSenderS);
+      mcbLogI("gLoopbackPacketSenderS = 0x%p", gLoopbackPacketSenderS);
       return;
     }
   }
 
   if (!gLoopbackPacketSenderC && sender != gLoopbackPacketSenderS) {
     gLoopbackPacketSenderC = sender;
-    HTTellText("[htmcb] gLoopbackPacketSenderC = 0x%p", gLoopbackPacketSenderC);
+    mcbLogI("gLoopbackPacketSenderC = 0x%p", gLoopbackPacketSenderC);
   }
 }
 

@@ -1,3 +1,9 @@
+// ----------------------------------------------------------------------------
+// mod/mod.cpp
+//
+// - HTModLoader exports.
+// ----------------------------------------------------------------------------
+
 #include "imgui.h"
 
 #include "mcb_internal.hpp"
@@ -16,7 +22,7 @@ __declspec(dllexport) HTStatus HTMLAPI HTModOnInit(
 
   // Save the main thread.
   gMainThreadId = GetCurrentThreadId();
-  HTTellText("[htmcb] gMainThreadId = ", gMainThreadId);
+  mcbLogI("gMainThreadId = %d", gMainThreadId);
 
   return HT_SUCCESS;
 }

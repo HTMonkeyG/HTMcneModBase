@@ -1,5 +1,7 @@
 #include "mcb_internal.hpp"
 
+#pragma warning(disable: 26495)
+
 // ----------------------------------------------------------------------------
 // [SECTION] COMMAND_REQUEST_PACKET_INIT
 // ----------------------------------------------------------------------------
@@ -44,7 +46,9 @@ static HTStatus fnInit_CmdReqPacket(
   fn_CmdReqPacket_CmdReqPacket = (PFN_CmdReqPacket_CmdReqPacket)HTSigScan(
     &sigE8_CmdReqPacket_CmdReqPacket);
 
-  return HT_SUCCESS;
+  return fn_CmdReqPacket_CmdReqPacket
+    ? HT_SUCCESS
+    : HT_FAIL;
 }
 
 // ----------------------------------------------------------------------------
