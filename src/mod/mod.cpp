@@ -9,6 +9,9 @@ bool gGuiReady = false;
 __declspec(dllexport) HTStatus HTMLAPI HTModOnInit(
   void *reserved
 ) {
+  QueryPerformanceFrequency(
+    &gPerfFreq);
+
   McbiModInitializer::setupAll(hModuleDll);
 
   // Save the main thread.

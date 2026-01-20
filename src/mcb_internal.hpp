@@ -46,6 +46,9 @@ extern DWORD gMainThreadId;
 // ImGui ready flag.
 extern bool gGuiReady;
 
+// Performance frequency.
+extern LARGE_INTEGER gPerfFreq;
+
 // Initializer class.
 class McbiModInitializer {
 public:
@@ -128,6 +131,47 @@ static inline HTStatus mcbiSigScanAndCreateHook(
     sfn->fn);
 
   return s;
+}
+
+// Get time elapsed in seconds by performance counter.
+static inline f64 mcbChrono(
+  f64 *lastTime
+) {
+  LARGE_INTEGER qpc;
+  f64 sec, result;
+
+  if (!lastTime)
+    return 0;
+
+  QueryPerformanceCounter(
+    &qpc);    
+
+  sec = (f64)qpc.QuadPart / (f64)gPerfFreq.QuadPart;
+
+  if (!*lastTime) {
+    *lastTime = sec;
+    return 0;
+  }
+
+  result = sec - *lastTime;
+  *lastTime = sec;
+
+  return result;
+}
+
+// Get time elapsed in seconds by performance counter.
+static inline f64 mcbChrono(
+  f64 lastTime = 0
+) {
+  LARGE_INTEGER qpc;
+  f64 sec;
+
+  QueryPerformanceCounter(
+    &qpc);    
+
+  sec = (f64)qpc.QuadPart / (f64)gPerfFreq.QuadPart;
+
+  return sec - lastTime;
 }
 
 // ----------------------------------------------------------------------------

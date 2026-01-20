@@ -1,6 +1,7 @@
 #include <windows.h>
 
 HMODULE hModuleDll = NULL;
+LARGE_INTEGER gPerfFreq = {0};
 
 BOOL APIENTRY DllMain(
   HMODULE hModule,

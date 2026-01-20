@@ -56,6 +56,19 @@ extern "C" {
 #define mcbEventMainLoop mcbMakeNamespace("mainLoop")
 
 // ----------------------------------------------------------------------------
+// [SECTION] GAME/NET
+// ----------------------------------------------------------------------------
+
+// Net stats.
+typedef struct {
+  float clientRecvPacketsPerSec;
+  float clientSendPacketsPerSec;
+} McbNetStats;
+
+MCB_API_ATTR HTStatus MCB_API mcbNetStatsGet(
+  McbNetStats *stats);
+
+// ----------------------------------------------------------------------------
 // [SECTION] GAME/NET/PACKET
 // ----------------------------------------------------------------------------
 
@@ -118,10 +131,6 @@ enum McbPacketFilterResult_ {
   McbPacketFilterResult_Blocked
 };
 
-// Packet filter callback.
-typedef McbPacketFilterResult (MCB_API *PFN_mcbPacketFilter)(
-  Packet *, McbPacketSource);
-
 // Packet source.
 typedef int McbPacketFilterType;
 enum McbPacketFilterType_ {
@@ -130,6 +139,10 @@ enum McbPacketFilterType_ {
   // Filtering outgoing package.
   McbPacketFilterType_Outgoing = 1 << 1
 };
+
+// Packet filter callback.
+typedef McbPacketFilterResult (MCB_API *PFN_mcbPacketFilter)(
+  Packet *, McbPacketFilterType, McbPacketSource);
 
 // Register a packet filter (listener).
 //

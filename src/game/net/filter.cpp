@@ -17,7 +17,10 @@ McbPacketFilterResult mcbiFilterOutgoingPacket(
   std::shared_lock<std::shared_mutex> lock{gMutex};
 
   for (auto &filter: gOutgoingFilter) {
-    McbPacketFilterResult result = filter(packet, source);
+    McbPacketFilterResult result = filter(
+      packet,
+      McbPacketFilterType_Outgoing,
+      source);
 
     if (result == McbPacketFilterResult_Blocked)
       return McbPacketFilterResult_Blocked;
@@ -35,7 +38,10 @@ McbPacketFilterResult mcbiFilterIncomingPacket(
   std::shared_lock<std::shared_mutex> lock{gMutex};
 
   for (auto &filter: gIncomingFilter) {
-    McbPacketFilterResult result = filter(packet, source);
+    McbPacketFilterResult result = filter(
+      packet,
+      McbPacketFilterType_Incoming,
+      source);
 
     if (result == McbPacketFilterResult_Blocked)
       return McbPacketFilterResult_Blocked;
@@ -52,16 +58,16 @@ MCB_API_ATTR HTStatus MCB_API mcbPacketFilterRegister(
   PFN_mcbPacketFilter filter
 ) {
   std::lock_guard<std::shared_mutex> lock{gMutex};
-  bool success = false;
   (void)hOwner;
 
   if (!filter)
     return HT_FAIL;
 
-  if (type == McbPacketFilterType_Incoming)
-    success = gIncomingFilter.insert(filter).second;
-  else if (type == McbPacketFilterType_Outgoing)
-    success = gOutgoingFilter.insert(filter).second;
+  if (type & McbPacketFilterType_Incoming)
+    gIncomingFilter.insert(filter).second;
 
-  return success ? HT_SUCCESS : HT_FAIL;
+  if (type & McbPacketFilterType_Outgoing)
+    gOutgoingFilter.insert(filter).second;
+
+  return HT_SUCCESS;
 }

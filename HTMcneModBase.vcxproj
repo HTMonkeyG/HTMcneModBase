@@ -25,10 +25,12 @@
     <ClCompile Include="libraries\imgui-1.92.2b\imgui_widgets.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\game\net\filter.cpp" />
+    <ClCompile Include="src\game\net\netStats.cpp" />
     <ClCompile Include="src\game\net\packet\packet.cpp" />
     <ClCompile Include="src\game\net\packet\textPacket.cpp" />
     <ClCompile Include="src\game\net\receiver.cpp" />
     <ClCompile Include="src\game\net\sender.cpp" />
+    <ClCompile Include="src\game\textMessage.cpp" />
     <ClCompile Include="src\mod\mod.cpp" />
     <ClCompile Include="src\mod\setup.cpp" />
   </ItemGroup>
@@ -145,7 +147,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <CallingConvention>FastCall</CallingConvention>
       <AdditionalIncludeDirectories>$(projectDir)libraries\imgui-1.92.2b;$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /cgthreads8 %(AdditionalOptions)</AdditionalOptions>
       <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -192,7 +194,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <CallingConvention>FastCall</CallingConvention>
       <AdditionalIncludeDirectories>$(projectDir)libraries\imgui-1.92.2b;$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /cgthreads8 %(AdditionalOptions)</AdditionalOptions>
       <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>

@@ -40,6 +40,9 @@
     <Filter Include="libraries\imgui-1.92.2b">
       <UniqueIdentifier>{7b92e023-6acd-48d2-80de-ba97b9f51bda}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\game\ui">
+      <UniqueIdentifier>{7e1137f0-a21d-4633-95df-9895c2e77cf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -77,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="libraries\imgui-1.92.2b\imgui_widgets.cpp">
       <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\net\netStats.cpp">
+      <Filter>src\game\net</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\textMessage.cpp">
+      <Filter>src\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
