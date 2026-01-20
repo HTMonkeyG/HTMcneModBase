@@ -19,44 +19,32 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libraries\imgui-1.92.2b\imgui.cpp" />
-    <ClCompile Include="libraries\imgui-1.92.2b\imgui_draw.cpp" />
-    <ClCompile Include="libraries\imgui-1.92.2b\imgui_tables.cpp" />
-    <ClCompile Include="libraries\imgui-1.92.2b\imgui_widgets.cpp" />
-    <ClCompile Include="src\dllmain.cpp" />
-    <ClCompile Include="src\game\net\filter.cpp" />
-    <ClCompile Include="src\game\net\netStats.cpp" />
-    <ClCompile Include="src\game\net\packet\commandRequestPacket.cpp" />
-    <ClCompile Include="src\game\net\packet\packet.cpp" />
-    <ClCompile Include="src\game\net\packet\textPacket.cpp" />
-    <ClCompile Include="src\game\net\receiver.cpp" />
-    <ClCompile Include="src\game\net\sender.cpp" />
-    <ClCompile Include="src\game\textMessage.cpp" />
-    <ClCompile Include="src\mod\mod.cpp" />
-    <ClCompile Include="src\mod\setup.cpp" />
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_mcbe.h" />
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_opengl3.h" />
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_sky.h" />
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_vklayer.h" />
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\htconfig.h" />
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\htmod.h" />
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\htmodloader.h" />
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imconfig.h" />
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imgui.h" />
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imgui_internal.h" />
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imstb_rectpack.h" />
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imstb_textedit.h" />
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_mcbe.h" />
-    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_opengl3.h" />
-    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_sky.h" />
-    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_vklayer.h" />
-    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htconfig.h" />
-    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htmod.h" />
-    <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\htmodloader.h" />
-    <ClInclude Include="libraries\imgui-1.92.2b\imconfig.h" />
-    <ClInclude Include="libraries\imgui-1.92.2b\imgui.h" />
-    <ClInclude Include="libraries\imgui-1.92.2b\imgui_internal.h" />
-    <ClInclude Include="libraries\imgui-1.92.2b\imstb_rectpack.h" />
-    <ClInclude Include="libraries\imgui-1.92.2b\imstb_textedit.h" />
-    <ClInclude Include="libraries\imgui-1.92.2b\imstb_truetype.h" />
-    <ClInclude Include="src\includes\htmcb.h" />
-    <ClInclude Include="src\mcb_internal.hpp" />
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui.cpp" />
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui_draw.cpp" />
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui_tables.cpp" />
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui_widgets.cpp" />
+    <ClCompile Include="src\dllmain.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{fbe20fa4-e2ac-4a0b-ab01-5116e6dd4e7b}</ProjectGuid>
-    <RootNamespace>HTMcneModBase</RootNamespace>
+    <ProjectGuid>{21314581-27eb-4834-b37c-cd60de9ffec4}</ProjectGuid>
+    <RootNamespace>mcbtest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -105,20 +93,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)dist\</OutDir>
-    <IntDir>$(ProjectDir)dist\</IntDir>
-    <TargetName>htmcb</TargetName>
+    <OutDir>$(projectDir)dist\</OutDir>
+    <IntDir>$(projectDir)dist\</IntDir>
+    <TargetName>mcbtest</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(ProjectDir)dist\</OutDir>
-    <IntDir>$(ProjectDir)dist\</IntDir>
-    <TargetName>htmcb</TargetName>
+    <OutDir>$(projectDir)dist\</OutDir>
+    <IntDir>$(projectDir)dist\</IntDir>
+    <TargetName>mcbtest</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;HTMCNEMODBASE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;MCBTEST_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -135,20 +123,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>MCB_API_ATTR=__declspec(dllexport)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;MCBTEST_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
       <CallingConvention>FastCall</CallingConvention>
-      <AdditionalIncludeDirectories>$(projectDir)libraries\imgui-1.92.2b;$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 /cgthreads8 /wd26495 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(projectDir)..\libraries\imgui-1.92.2b;$(projectDir)..\libraries\htmodloader\includes\htmodloader;$(projectDir)..\src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -157,15 +140,13 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(ProjectDir)libraries\htmodloader\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>htmodloader.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;HTMCNEMODBASE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;MCBTEST_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -182,20 +163,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>MCB_API_ATTR=__declspec(dllexport)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;MCBTEST_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <PrecompiledHeaderOutputFile />
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>AdvancedVectorExtensions</EnableEnhancedInstructionSet>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
       <CallingConvention>FastCall</CallingConvention>
-      <AdditionalIncludeDirectories>$(projectDir)libraries\imgui-1.92.2b;$(ProjectDir)libraries\htmodloader\includes\htmodloader;$(ProjectDir)src;$(ProjectDir)src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 /cgthreads8 /wd26495 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(projectDir)..\libraries\imgui-1.92.2b;$(projectDir)..\libraries\htmodloader\includes\htmodloader;$(projectDir)..\src\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>false</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -204,8 +180,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(ProjectDir)libraries\htmodloader\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>htmodloader.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

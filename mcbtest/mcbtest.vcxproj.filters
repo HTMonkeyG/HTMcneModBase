@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{051603d2-dd6d-48e8-9057-fe26d62e81fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries">
+      <UniqueIdentifier>{ebc0fa91-6c52-48ff-9284-96c9c6d41024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\imgui-1.92.2b">
+      <UniqueIdentifier>{34dd5ae4-0450-4b6f-af26-b675668fc40e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader">
+      <UniqueIdentifier>{6856230d-3349-404c-a592-838f71ccde2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes">
+      <UniqueIdentifier>{39d6ad25-60f2-453f-b2e5-09aa4757766d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes\htmodloader">
+      <UniqueIdentifier>{64bb9930-1061-4851-b5d9-7170edf01f42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes\htmodloader\includes">
+      <UniqueIdentifier>{c36e7d32-c6f7-42b6-b139-980bca30fda0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libraries\htmodloader\includes\htmodloader\includes\backends">
+      <UniqueIdentifier>{a020e238-2196-4840-aefd-14267819fd20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\gui">
+      <UniqueIdentifier>{39989b2b-ec11-4869-91d1-eb03e57b9501}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imconfig.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imgui.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imgui_internal.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imstb_rectpack.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imstb_textedit.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\imgui-1.92.2b\imstb_truetype.h">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\htconfig.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\htmod.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\htmodloader.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_mcbe.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_opengl3.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_sky.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_vklayer.h">
+      <Filter>libraries\htmodloader\includes\htmodloader\includes\backends</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui_draw.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui_tables.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\imgui-1.92.2b\imgui_widgets.cpp">
+      <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dllmain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -87,6 +87,9 @@
     <ClCompile Include="src\game\textMessage.cpp">
       <Filter>src\game</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\net\packet\commandRequestPacket.cpp">
+      <Filter>src\game\net\packet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\includes\htmcb.h">
