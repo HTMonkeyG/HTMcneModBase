@@ -302,20 +302,11 @@ public:
 // [SECTION] GAME/NET/PACKET/TEXT_PACKET
 // ----------------------------------------------------------------------------
 
-typedef u08 TextPacketMessageType;
-enum TextPacketMessageType_ {
-  TextPacketMessageType_Chat = 1,
-  TextPacketMessageType_Translate = 2,
-  TextPacketMessageType_JukeboxPopup = 4,
-  TextPacketMessageType_SystemMessage = 6,
-  TextPacketMessageType_Announcement = 8,
-};
-
 struct TextPacket_: Packet {
 public:
   TextPacket_();
 
-  TextPacketMessageType messageType;
+  TextPacketType messageType;
   std::string playerName;
   std::string message;
   std::string senderXuid;
@@ -330,10 +321,9 @@ public:
 // [SECTION] GAME/NET/PACKET/COMMAND_REQUEST_PACKET
 // ----------------------------------------------------------------------------
 
-typedef struct CommandOriginData_ CommandOriginData;
 struct CommandOriginData_ {
-  i32 commandType;
-  u64 uuid[2];
+  CommandOriginType commandType;
+  McUuid uuid;
   std::string requestId;
   u64 playerId;
 };
@@ -346,6 +336,27 @@ public:
   CommandOriginData commandOriginData;
   int version;
   bool isInternalSource;
+};
+
+// ----------------------------------------------------------------------------
+// [SECTION] GAME/NET/PACKET/COMMAND_OUTPUT_PACKET
+// ----------------------------------------------------------------------------
+
+struct CommandOutputMessage_ {
+  bool successful;
+  std::string messageId;
+  std::vector<std::string> parameters;
+};
+
+struct CommandOutputPacket_: Packet {
+public:
+  CommandOutputPacket_();
+
+  CommandOriginData originData;
+  u08 outputType;
+  u32 successCount;
+  std::vector<CommandOutputMessage> outputMessages;
+  std::string dataSet;
 };
 
 // ----------------------------------------------------------------------------

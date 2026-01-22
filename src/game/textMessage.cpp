@@ -19,7 +19,7 @@ MCB_API_ATTR HTStatus MCB_API mcbSendChatMessage(
 
   TextPacket tp;
 
-  tp.messageType = TextPacketMessageType_Chat;
+  tp.messageType = TextPacketType_Chat;
 
   if (!maxLen) {
     if (strlen(message) >= 0x10000)
@@ -40,5 +40,22 @@ MCB_API_ATTR HTStatus MCB_API mcbSendCommand(
   LPCSTR command,
   UINT32 maxLen
 ) {
-  return HT_FAIL;
+  if (!command || maxLen >= 0x10000)
+    return HT_FAIL;
+
+  CommandRequestPacket crp;
+
+  if (!maxLen) {
+    if (strlen(command) >= 0x10000)
+      return HT_FAIL;
+
+    crp.command = command;
+  } else {
+    crp.command.resize(maxLen + 1);
+    memcpy(crp.command.data(), command, maxLen);
+    crp.command.data()[maxLen] = 0;
+  }
+
+  return mcbPacketSendToServer(
+    &crp);
 }
