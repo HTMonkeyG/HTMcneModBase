@@ -90,6 +90,9 @@
     <ClCompile Include="src\game\net\packet\commandRequestPacket.cpp">
       <Filter>src\game\net\packet</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\net\packet\commandOutputPacket.cpp">
+      <Filter>src\game\net\packet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\includes\htmcb.h">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="libraries\imgui-1.92.2b\imstb_truetype.h">
       <Filter>libraries\imgui-1.92.2b</Filter>
+    </ClInclude>
+    <ClInclude Include="src\includes\htmcb_protocol.h">
+      <Filter>src\includes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
