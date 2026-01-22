@@ -43,6 +43,9 @@
     <Filter Include="src\game\ui">
       <UniqueIdentifier>{7e1137f0-a21d-4633-95df-9895c2e77cf0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\mod\utils">
+      <UniqueIdentifier>{7bb29982-3258-408e-b302-a359a4666836}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="src\game\net\packet\commandOutputPacket.cpp">
       <Filter>src\game\net\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mod\utils\uuid.cpp">
+      <Filter>src\mod\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -35,6 +35,7 @@
     <ClCompile Include="src\game\textMessage.cpp" />
     <ClCompile Include="src\mod\mod.cpp" />
     <ClCompile Include="src\mod\setup.cpp" />
+    <ClCompile Include="src\mod\utils\uuid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libraries\htmodloader\includes\htmodloader\includes\backends\html_impl_mcbe.h" />

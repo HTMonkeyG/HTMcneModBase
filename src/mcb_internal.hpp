@@ -144,6 +144,14 @@ static inline HTStatus mcbiSigScanAndCreateHook(
   return s;
 }
 
+// ----------------------------------------------------------------------------
+// [SECTION] UTILS
+// ----------------------------------------------------------------------------
+
+// Generate a McUuid struct.
+HTStatus mcbiUuidGen(
+  McUuid *uuid);
+
 // Get time elapsed in seconds by performance counter.
 static inline f64 mcbiChrono(
   f64 *lastTime

@@ -38,12 +38,14 @@ MCB_API_ATTR HTStatus MCB_API mcbSendChatMessage(
 
 MCB_API_ATTR HTStatus MCB_API mcbSendCommand(
   LPCSTR command,
-  UINT32 maxLen
+  UINT32 maxLen,
+  McUuid *uuid
 ) {
   if (!command || maxLen >= 0x10000)
     return HT_FAIL;
 
   CommandRequestPacket crp;
+  McUuid id;
 
   if (!maxLen) {
     if (strlen(command) >= 0x10000)
@@ -55,6 +57,16 @@ MCB_API_ATTR HTStatus MCB_API mcbSendCommand(
     memcpy(crp.command.data(), command, maxLen);
     crp.command.data()[maxLen] = 0;
   }
+
+  if (!mcbiUuidGen(&id))
+    return HT_FAIL;
+
+  crp.version = 0x27;
+  crp.commandOriginData.uuid = id;
+  crp.commandOriginData.commandType = CommandOriginType_Player;
+
+  if (uuid)
+    *uuid = id;
 
   return mcbPacketSendToServer(
     &crp);

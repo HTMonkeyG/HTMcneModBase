@@ -174,6 +174,13 @@ MCB_API_ATTR HTStatus MCB_API mcbPacketFilterUnregister(
 // If the message contains '\0', be sure to set maxlen to the buffer length.
 MCB_API_ATTR HTStatus MCB_API mcbSendChatMessage(
   LPCSTR message,
+  UINT32 maxLen);
+
+// Send a command host, just like sending in the chat menu.
+//
+// The command request's uuid will be saved in `uuid`.
+MCB_API_ATTR HTStatus MCB_API mcbSendCommand(
+  LPCSTR message,
   UINT32 maxLen,
   McUuid *uuid);
 
