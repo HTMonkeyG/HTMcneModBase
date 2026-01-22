@@ -39,6 +39,20 @@ struct CommandOutputMessage_ {
   std::vector<std::string> parameters;
 };
 
+struct CommandOutput_ {
+  // Command output type.
+  CommandOutputType outputType;
+
+  // Unknown.
+  void *commandPropertyBag;
+
+  // Output messages.
+  std::vector<CommandOutputMessage> messages;
+
+  // The command's success count.
+  int successCount;
+};
+
 // ----------------------------------------------------------------------------
 // [SECTION] PACKETS
 // ----------------------------------------------------------------------------
@@ -134,17 +148,8 @@ public:
   // Command origin.
   CommandOriginData originData;
 
-  // Command output type.
-  CommandOutputType outputType;
-
-  // The command's success count.
-  u32 successCount;
-
-  // Output messages.
-  std::vector<CommandOutputMessage> outputMessages;
-
-  // Unknown.
-  std::string dataSet;
+  // Command output data collection.
+  CommandOutput commandOutput;
 };
 
 // CommandRequestPacket.

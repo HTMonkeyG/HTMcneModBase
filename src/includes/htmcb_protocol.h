@@ -311,6 +311,8 @@ enum TextPacketType_ {
 
 typedef struct CommandOriginData_ CommandOriginData;
 
+typedef struct CommandOutput_ CommandOutput;
+
 typedef struct CommandOutputMessage_ CommandOutputMessage;
 
 // ----------------------------------------------------------------------------
