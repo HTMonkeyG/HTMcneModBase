@@ -1,3 +1,9 @@
+// ----------------------------------------------------------------------------
+// mcb_internal.hpp
+//
+// - HTMcneModbase internal declarations.
+// ----------------------------------------------------------------------------
+
 #ifndef __MCB_INTERNAL_H__
 #define __MCB_INTERNAL_H__
 
@@ -139,7 +145,7 @@ static inline HTStatus mcbiSigScanAndCreateHook(
 }
 
 // Get time elapsed in seconds by performance counter.
-static inline f64 mcbChrono(
+static inline f64 mcbiChrono(
   f64 *lastTime
 ) {
   LARGE_INTEGER qpc;
@@ -165,7 +171,7 @@ static inline f64 mcbChrono(
 }
 
 // Get time elapsed in seconds by performance counter.
-static inline f64 mcbChrono(
+static inline f64 mcbiChrono(
   f64 lastTime = 0
 ) {
   LARGE_INTEGER qpc;
@@ -195,8 +201,6 @@ McbPacketFilterResult mcbiFilterIncomingPacket(
 // ----------------------------------------------------------------------------
 // [SECTION] GAME/NET/PACKET/FIELDS
 // ----------------------------------------------------------------------------
-
-
 
 /*
 // Initializer class especially for packet fields.
@@ -260,125 +264,10 @@ private:
 };*/
 
 // ----------------------------------------------------------------------------
-// [SECTION] GAME/NET/PACKET/PACKET
+// [SECTION] GAME/NET/PACKET
 // ----------------------------------------------------------------------------
 
-// Abstract base class for data packets, copied from the game.
-struct Packet_ {
-public:
-  Packet_();
-
-  // Destructor.
-  virtual ~Packet_();
-
-  // Get packet id.
-  virtual i32 getId();
-
-  // Get packet name.
-  virtual std::string getName();
-
-  virtual void *unknown_1();
-
-  // Serialize the packet to binary.
-  virtual void *write(void *);
-
-  // Deserialize the common part of the packet from binary.
-  virtual void *read(void *);
-
-  virtual u08 unknown_2();
-  virtual u08 unknown_3();
-
-  // Deserialize the rest of the packet from binary.
-  virtual void *_read(void *);
-
-  u64 unk_1;
-  char subClientId;
-  u64 unk_2;
-  void *handler;
-  u64 unk_3;
-};
-
-// ----------------------------------------------------------------------------
-// [SECTION] GAME/NET/PACKET/TEXT_PACKET
-// ----------------------------------------------------------------------------
-
-struct TextPacket_: Packet {
-public:
-  TextPacket_();
-
-  TextPacketType messageType;
-  std::string playerName;
-  std::string message;
-  std::string senderXuid;
-  bool localize;
-  std::vector<std::string> paramList;
-  bool unk_5;
-  std::string platformId;
-  std::string filteredMessage;
-};
-
-// ----------------------------------------------------------------------------
-// [SECTION] GAME/NET/PACKET/COMMAND_REQUEST_PACKET
-// ----------------------------------------------------------------------------
-
-struct CommandOriginData_ {
-  CommandOriginType commandType;
-  McUuid uuid;
-  std::string requestId;
-  u64 playerId;
-};
-
-struct CommandRequestPacket_: Packet {
-public:
-  CommandRequestPacket_();
-
-  std::string command;
-  CommandOriginData commandOriginData;
-  int version;
-  bool isInternalSource;
-};
-
-// ----------------------------------------------------------------------------
-// [SECTION] GAME/NET/PACKET/COMMAND_OUTPUT_PACKET
-// ----------------------------------------------------------------------------
-
-struct CommandOutputMessage_ {
-  bool successful;
-  std::string messageId;
-  std::vector<std::string> parameters;
-};
-
-struct CommandOutputPacket_: Packet {
-public:
-  CommandOutputPacket_();
-
-  CommandOriginData originData;
-  u08 outputType;
-  u32 successCount;
-  std::vector<CommandOutputMessage> outputMessages;
-  std::string dataSet;
-};
-
-// ----------------------------------------------------------------------------
-// [SECTION] GAME/NET/PACKET/ADD_PLAYER_PACKET
-// ----------------------------------------------------------------------------
-
-struct AddPlayerPacket_: Packet {
-public:
-  AddPlayerPacket_();
-
-  u64 uuid[2];
-  std::string playerName;
-  u64 actorRuntimeId;
-  std::string platformChatId;
-  f32 position[3];
-  f32 velocity[3];
-  f32 rotation[2];
-  f32 yHeadRotation;
-};
-
-// ----------------------------------------------------------------------------
-// [SECTION] GAME/NET/PACKET/COMMAND_OUTPUT_PACKET
-// ----------------------------------------------------------------------------
+// Bedrock Protocol.
+#include "mcb_protocol.hpp"
 
 #endif

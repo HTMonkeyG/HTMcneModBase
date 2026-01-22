@@ -143,5 +143,8 @@
     <ClInclude Include="src\includes\htmcb_protocol.h">
       <Filter>src\includes</Filter>
     </ClInclude>
+    <ClInclude Include="src\mcb_protocol.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

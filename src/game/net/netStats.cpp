@@ -62,7 +62,7 @@ static McbPacketFilterResult statsListener(
     type == McbPacketFilterType_Incoming
     && source == McbPacketSource_Server
   ) {
-    deltaTime = gFirstTimeRecv - mcbChrono();
+    deltaTime = gFirstTimeRecv - mcbiChrono();
 
     if (deltaTime > 1.0) {
       gNetStats.clientRecvPacketsPerSec = (f32)(gRecvPackets / deltaTime);
@@ -77,7 +77,7 @@ static McbPacketFilterResult statsListener(
     type == McbPacketFilterType_Outgoing
     && source == McbPacketSource_Client
   ) {
-    deltaTime = gFirstTimeRecv - mcbChrono();
+    deltaTime = gFirstTimeRecv - mcbiChrono();
 
     if (deltaTime > 1.0) {
       gNetStats.clientSendPacketsPerSec = (f32)(gSendPackets / deltaTime);
