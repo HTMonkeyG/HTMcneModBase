@@ -28,6 +28,8 @@
     <ClCompile Include="src\game\net\netStats.cpp" />
     <ClCompile Include="src\game\net\packet\commandOutputPacket.cpp" />
     <ClCompile Include="src\game\net\packet\commandRequestPacket.cpp" />
+    <ClCompile Include="src\game\net\packet\mapCreateLockedCopy.cpp" />
+    <ClCompile Include="src\game\net\packet\mapInfoRequest.cpp" />
     <ClCompile Include="src\game\net\packet\packet.cpp" />
     <ClCompile Include="src\game\net\packet\textPacket.cpp" />
     <ClCompile Include="src\game\net\receiver.cpp" />

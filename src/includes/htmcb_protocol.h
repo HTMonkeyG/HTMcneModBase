@@ -328,12 +328,17 @@ typedef struct Packet_ Packet;
 // which are server->client or server broadcasted to all clients.
 typedef struct TextPacket_ TextPacket;
 
-
 // Add player packet (12).
 //
 // A new player joins the game; the server sends this packet to the other
 // players.
 typedef struct AddPlayerPacket_ AddPlayerPacket;
+
+// MapInfoRequestPacket (68).
+//
+// In the case of the client being unable to find map data for a map item it
+// sends a uuid for a map to the server.
+typedef struct MapInfoRequestPacket_ MapInfoRequestPacket;
 
 // Command request packet (77).
 //
@@ -344,5 +349,11 @@ typedef struct CommandRequestPacket_ CommandRequestPacket;
 //
 // "slash" command execution, server to client.
 typedef struct CommandOutputPacket_ CommandOutputPacket;
+
+// MapCreateLockedCopyPacket (131).
+//
+// Ask server to create a locked map. This is fired when the user locks a map
+// item utilizing the Cartography Table in game.
+typedef struct MapCreateLockedCopyPacket_ MapCreateLockedCopyPacket;
 
 #endif

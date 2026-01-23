@@ -59,7 +59,6 @@ struct CommandOutput_ {
 
 // Abstract base class for data packets, copied from the game.
 struct Packet_ {
-public:
   Packet_();
 
   // Destructor.
@@ -94,7 +93,6 @@ public:
 
 // AddPlayerPacket.
 struct AddPlayerPacket_: Packet {
-public:
   AddPlayerPacket_();
 
   u64 uuid[2];
@@ -107,9 +105,60 @@ public:
   f32 yHeadRotation;
 };
 
+// CommandOutputPacket.
+struct CommandOutputPacket_: Packet {
+  CommandOutputPacket_();
+
+  // Command origin.
+  CommandOriginData originData;
+
+  // Command output data collection.
+  CommandOutput commandOutput;
+};
+
+// CommandRequestPacket.
+struct CommandRequestPacket_: Packet {
+  CommandRequestPacket_();
+
+  // Requested "slash" command string.
+  std::string command;
+
+  // Command origin.
+  CommandOriginData commandOriginData;
+
+  // Command version, currently 0x27.
+  int version;
+
+  // Unknown.
+  bool isInternalSource;
+};
+
+// MapInfoRequestPacket.
+struct MapInfoRequestPacket_: Packet {
+  MapInfoRequestPacket_();
+
+  // Map unique id.
+  u64 mapUniqueId;
+
+  // Pixels, in 128 * 128 2D array format.
+  // These are sent from the client to tell the Server map about terrain pixels
+  // it doesn't know about.
+  std::vector<COLORREF> clientPixels;
+};
+
+// MapCreateLockedCopyPacket.
+struct MapCreateLockedCopyPacket_ {
+  MapCreateLockedCopyPacket_();
+
+  // Map unique id.
+  u64 originalMapId;
+
+  // Map unique id.
+  u64 newMapId;
+};
+
 // TextPacket.
 struct TextPacket_: Packet {
-public:
   TextPacket_();
 
   // Message type.
@@ -138,36 +187,6 @@ public:
 
   // Unknown.
   std::string filteredMessage;
-};
-
-// CommandOutputPacket.
-struct CommandOutputPacket_: Packet {
-public:
-  CommandOutputPacket_();
-
-  // Command origin.
-  CommandOriginData originData;
-
-  // Command output data collection.
-  CommandOutput commandOutput;
-};
-
-// CommandRequestPacket.
-struct CommandRequestPacket_: Packet {
-public:
-  CommandRequestPacket_();
-
-  // Requested "slash" command string.
-  std::string command;
-  
-  // Command origin.
-  CommandOriginData commandOriginData;
-
-  // Command version, currently 0x27.
-  int version;
-
-  // Unknown.
-  bool isInternalSource;
 };
 
 #endif

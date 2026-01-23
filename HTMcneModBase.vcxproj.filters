@@ -99,6 +99,12 @@
     <ClCompile Include="src\mod\utils\uuid.cpp">
       <Filter>src\mod\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\net\packet\mapCreateLockedCopy.cpp">
+      <Filter>src\game\net\packet</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\net\packet\mapInfoRequest.cpp">
+      <Filter>src\game\net\packet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\includes\htmcb.h">
