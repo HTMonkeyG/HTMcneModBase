@@ -61,7 +61,7 @@ static HTStatus fnInit_Packet(
 // [SECTION] PACKET
 // ----------------------------------------------------------------------------
 
-Packet::Packet_() {
+Packet_::Packet_() {
   // Proxy to the game's constructor.
   if (fn_Packet_Packet)
     fn_Packet_Packet(this);
@@ -70,41 +70,41 @@ Packet::Packet_() {
 // We have implemented all the virtual functions of Packet, but we actually do
 // nothing. All the virtual functions is overriden by the game's vftable.
 
-Packet::~Packet_() { }
+Packet_::~Packet_() { }
 
-i32 Packet::getId() {
+i32 Packet_::getId() {
   return 0;
 }
 
-std::string Packet::getName() {
+std::string Packet_::getName() {
   return "";
 }
 
-void *Packet::unknown_1() {
+void *Packet_::unknown_1() {
   return nullptr;
 }
 
-void *Packet::write(
+void *Packet_::write(
   void *
 ) {
   return nullptr;
 }
 
-void *Packet::read(
+void *Packet_::read(
   void *
 ) {
   return nullptr;
 }
 
-u08 Packet::unknown_2() {
+u08 Packet_::unknown_2() {
   return 0;
 }
 
-u08 Packet::unknown_3() {
+u08 Packet_::unknown_3() {
   return 0;
 }
 
-void *Packet::_read(
+void *Packet_::_read(
   void *
 ) {
   return nullptr;

@@ -53,6 +53,14 @@ struct CommandOutput_ {
   int successCount;
 };
 
+struct MoveActorDeltaData_ {
+  u64 actorId;
+  MoveActorDeltaHeader flags;
+  f32 position[3];
+  i08 rotation[2];
+  i08 rotateYHead;
+};
+
 // ----------------------------------------------------------------------------
 // [SECTION] PACKETS
 // ----------------------------------------------------------------------------
@@ -133,6 +141,14 @@ struct CommandRequestPacket_: Packet {
   bool isInternalSource;
 };
 
+struct InteractPacket_: Packet {
+  InteractPacket_();
+
+  InteractPacketAction action;
+  u64 actorId;
+  f32 position[3];
+};
+
 // MapInfoRequestPacket.
 struct MapInfoRequestPacket_: Packet {
   MapInfoRequestPacket_();
@@ -155,6 +171,13 @@ struct MapCreateLockedCopyPacket_ {
 
   // Map unique id.
   u64 newMapId;
+};
+
+// MoveActorDeltaPacket.
+struct MoveActorDeltaPacket_: Packet {
+  MoveActorDeltaPacket_();
+
+  MoveActorDeltaData data;
 };
 
 // TextPacket.

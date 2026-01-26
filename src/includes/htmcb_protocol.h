@@ -69,6 +69,15 @@ enum CommandOutputType_ {
   CommandOutputType_DataSet = 4
 };
 
+typedef char InteractPacketAction;
+enum InteractAction_ {
+  InteractAction_Invalid = 0,
+  InteractAction_StopRiding = 3,
+  InteractAction_InteractUpdate = 4,
+  InteractAction_NpcOpen = 5,
+  InteractAction_OpenInventory = 6
+};
+
 // All avaliable (not deprecated) packet ids.
 typedef int McPacketId;
 enum McPacketId_ {
@@ -288,6 +297,16 @@ enum McPacketId_ {
   McPacketId_END = 310
 };
 
+typedef short MoveActorDeltaHeader;
+enum MoveActorDeltaHeader_ {
+  MoveActorDeltaHeader_PosX = 1 << 0,
+  MoveActorDeltaHeader_PosY = 1 << 1,
+  MoveActorDeltaHeader_PosZ = 1 << 2,
+  MoveActorDeltaHeader_RotX = 1 << 3,
+  MoveActorDeltaHeader_RotY = 1 << 4,
+  MoveActorDeltaHeader_RotYHead = 1 << 5,
+};
+
 // Type of the TextPacket.
 typedef char TextPacketType;
 enum TextPacketType_ {
@@ -315,6 +334,8 @@ typedef struct CommandOutput_ CommandOutput;
 
 typedef struct CommandOutputMessage_ CommandOutputMessage;
 
+typedef struct MoveActorDeltaData_ MoveActorDeltaData;
+
 // ----------------------------------------------------------------------------
 // [SECTION] PACKETS
 // ----------------------------------------------------------------------------
@@ -334,11 +355,23 @@ typedef struct TextPacket_ TextPacket;
 // players.
 typedef struct AddPlayerPacket_ AddPlayerPacket;
 
+// Interact (33).
+//
+// Used for inventory button press and in _updateInteraction() for a variety
+// of purposes.
+typedef struct InteractPacket_ InteractPacket;
+
 // MapInfoRequestPacket (68).
 //
 // In the case of the client being unable to find map data for a map item it
 // sends a uuid for a map to the server.
 typedef struct MapInfoRequestPacket_ MapInfoRequestPacket;
+
+// MoveActorDeltaPacket (111).
+//
+// This packet is all the deltas of actors position, rotation, and head rotation.
+// This is used for all actors.
+typedef struct MoveActorDeltaPacket_ MoveActorDeltaPacket;
 
 // Command request packet (77).
 //

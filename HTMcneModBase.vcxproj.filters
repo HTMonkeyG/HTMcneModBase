@@ -105,6 +105,9 @@
     <ClCompile Include="src\game\net\packet\mapInfoRequest.cpp">
       <Filter>src\game\net\packet</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\net\netEvents.cpp">
+      <Filter>src\game\net</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\includes\htmcb.h">

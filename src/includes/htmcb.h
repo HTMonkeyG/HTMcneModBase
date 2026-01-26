@@ -85,6 +85,11 @@ typedef struct {
 MCB_API_ATTR HTStatus MCB_API mcbNetStatsGet(
   McbNetStats *stats);
 
+typedef struct {
+  const char *playerName;
+  const char *message;
+} McbChatEventData;
+
 // ----------------------------------------------------------------------------
 // [SECTION] GAME/NET/PACKET
 // ----------------------------------------------------------------------------

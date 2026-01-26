@@ -19,7 +19,7 @@ static McbPacketFilterResult statsListener(
 
 /* Struct declarations. */
 
-static McbiModInitializer gInit_MessageLoopEventEmitter{
+static McbiModInitializer gInit_McbNetStats{
   fnInit_McbNetStats,
   "McbNetStats"
 };
