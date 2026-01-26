@@ -46,6 +46,9 @@
     <Filter Include="src\mod\utils">
       <UniqueIdentifier>{7bb29982-3258-408e-b302-a359a4666836}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\custom">
+      <UniqueIdentifier>{5ff532d4-41a8-42d0-937b-7d2a6a15e68a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -161,5 +164,10 @@
     <ClInclude Include="src\mcb_protocol.hpp">
       <Filter>src</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\custom\README.md">
+      <Filter>src\custom</Filter>
+    </None>
   </ItemGroup>
 </Project>

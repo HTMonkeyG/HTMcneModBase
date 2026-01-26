@@ -59,6 +59,9 @@
     <ClInclude Include="src\mcb_internal.hpp" />
     <ClInclude Include="src\mcb_protocol.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\custom\README.md" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
