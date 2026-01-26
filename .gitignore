@@ -8,7 +8,7 @@
 *.bak
 *.ini
 test*
-!libraries/leveldb/lib/*.a
+*.vcxproj.user
 
 # Folders
 .vs/

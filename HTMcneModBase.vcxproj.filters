@@ -111,6 +111,9 @@
     <ClCompile Include="src\game\net\netEvents.cpp">
       <Filter>src\game\net</Filter>
     </ClCompile>
+    <ClCompile Include="src\custom\example.cpp">
+      <Filter>src\custom</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\includes\htmcb.h">
