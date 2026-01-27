@@ -106,47 +106,12 @@ Packet_::Packet_() {
     fn_Packet_Packet(this);
 }
 
-// We have implemented all the virtual functions of Packet, but we actually do
-// nothing. All the virtual functions is overriden by the game's vftable.
-
-Packet_::~Packet_() { }
-
-i32 Packet_::getId() {
-  return 0;
-}
-
-std::string Packet_::getName() {
-  return "";
-}
-
-void *Packet_::unknown_1() {
-  return nullptr;
-}
-
-void *Packet_::write(
-  void *
+void Packet_::handle(
+  const void *networkIdentifier,
+  void *netEventCallback,
+  std::shared_ptr<Packet> &packet
 ) {
-  return nullptr;
-}
-
-void *Packet_::read(
-  void *
-) {
-  return nullptr;
-}
-
-u08 Packet_::unknown_2() {
-  return 0;
-}
-
-u08 Packet_::unknown_3() {
-  return 0;
-}
-
-void *Packet_::_read(
-  void *
-) {
-  return nullptr;
+  ;
 }
 
 // ----------------------------------------------------------------------------

@@ -8,14 +8,15 @@
 #define __MCB_INTERNAL_H__
 
 #include <windows.h>
-#include <map>
-#include <unordered_map>
 #include <set>
-#include <unordered_set>
+#include <map>
 #include <mutex>
-#include <shared_mutex>
 #include <vector>
+#include <memory>
 #include <algorithm>
+#include <shared_mutex>
+#include <unordered_map>
+#include <unordered_set>
 
 #include "htmcb.h"
 
@@ -204,6 +205,10 @@ std::shared_ptr<Packet> mcCreateMinecraftPacket(
 // Create a packet with MineraftPackets::createPacket().
 template<typename T>
 std::shared_ptr<T> mcCreateMinecraftPacket() {
+  static_assert(
+    std::is_base_of_v<Packet, T> && !std::is_same_v<Packet, T>,
+    "incorrect packet type");
+
   auto ptr = mcCreateMinecraftPacket(T::id);
 
   return std::static_pointer_cast<T>(ptr);
@@ -239,6 +244,10 @@ template<typename T>
 void mcbiPacketConstruct(
   T *pPacket
 ) {
+  static_assert(
+    std::is_base_of_v<Packet, T> && !std::is_same_v<Packet, T>,
+    "incorrect packet type");
+
   auto it = gSavedVftable.find(T::id);
 
   if (it != gSavedVftable.end()) {
@@ -255,32 +264,43 @@ void mcbiPacketConstruct(
 
 // Abstract base class for data packets, copied from the game.
 struct Packet_ {
+  // Packet id, for all packet-related functions of MCB.
   static constexpr McPacketId id = McPacketId_END;
 
+  // Packet handler.
+  static void handle(
+    const void *networkIdentifier,
+    void *netEventCallback,
+    std::shared_ptr<Packet> &packet);
+
+  // Constructor.
   Packet_();
 
+  // We have implemented all the virtual functions of Packet, but we actually do
+  // nothing. All the virtual functions is overriden by the game's vftable.
+
   // Destructor.
-  virtual ~Packet_();
+  virtual ~Packet_() = default;
 
   // Get packet id.
-  virtual i32 getId();
+  virtual i32 getId() { return 0; }
 
   // Get packet name.
-  virtual std::string getName();
+  virtual std::string getName() { return ""; }
 
-  virtual void *unknown_1();
+  virtual void *unknown_1() { return nullptr; }
 
   // Serialize the packet to binary.
-  virtual void *write(void *);
+  virtual void *write(void *) { return nullptr; }
 
   // Deserialize the common part of the packet from binary.
-  virtual void *read(void *);
+  virtual void *read(void *) { return nullptr; }
 
-  virtual u08 unknown_2();
-  virtual u08 unknown_3();
+  virtual u08 unknown_2() { return 0; }
+  virtual u08 unknown_3() { return 0; }
 
   // Deserialize the rest of the packet from binary.
-  virtual void *_read(void *);
+  virtual void *_read(void *) { return nullptr; }
 
   u64 unk_1;
   char subClientId;
