@@ -197,6 +197,18 @@ static inline f64 mcbiChrono(
 // [SECTION] GAME/NET
 // ----------------------------------------------------------------------------
 
+// Create a packet with MineraftPackets::createPacket().
+std::shared_ptr<Packet> mcCreateMinecraftPacket(
+  McPacketId id);
+
+// Create a packet with MineraftPackets::createPacket().
+template<typename T>
+std::shared_ptr<T> mcCreateMinecraftPacket() {
+  auto ptr = mcCreateMinecraftPacket(T::id);
+
+  return std::static_pointer_cast<T>(ptr);
+}
+
 // Filter packets.
 McbPacketFilterResult mcbiFilterOutgoingPacket(
   McbPacketSource source,

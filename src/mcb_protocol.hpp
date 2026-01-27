@@ -67,6 +67,8 @@ struct MoveActorDeltaData_ {
 
 // Abstract base class for data packets, copied from the game.
 struct Packet_ {
+  static constexpr McPacketId id = McPacketId_END;
+
   Packet_();
 
   // Destructor.
@@ -101,6 +103,8 @@ struct Packet_ {
 
 // AddPlayerPacket.
 struct AddPlayerPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_AddPlayer;
+
   AddPlayerPacket_();
 
   u64 uuid[2];
@@ -115,6 +119,8 @@ struct AddPlayerPacket_: Packet {
 
 // CommandOutputPacket.
 struct CommandOutputPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_CommandOutput;
+
   CommandOutputPacket_();
 
   // Command origin.
@@ -126,6 +132,8 @@ struct CommandOutputPacket_: Packet {
 
 // CommandRequestPacket.
 struct CommandRequestPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_CommandRequest;
+
   CommandRequestPacket_();
 
   // Requested "slash" command string.
@@ -142,6 +150,8 @@ struct CommandRequestPacket_: Packet {
 };
 
 struct InteractPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_Interact;
+
   InteractPacket_();
 
   InteractPacketAction action;
@@ -151,6 +161,8 @@ struct InteractPacket_: Packet {
 
 // MapInfoRequestPacket.
 struct MapInfoRequestPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_MapInfoRequest;
+
   MapInfoRequestPacket_();
 
   // Map unique id.
@@ -164,6 +176,8 @@ struct MapInfoRequestPacket_: Packet {
 
 // MapCreateLockedCopyPacket.
 struct MapCreateLockedCopyPacket_ {
+  static constexpr McPacketId id = McPacketId_MapCreateLockedCopy;
+
   MapCreateLockedCopyPacket_();
 
   // Map unique id.
@@ -175,6 +189,8 @@ struct MapCreateLockedCopyPacket_ {
 
 // MoveActorDeltaPacket.
 struct MoveActorDeltaPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_MoveDeltaActor;
+
   MoveActorDeltaPacket_();
 
   MoveActorDeltaData data;
@@ -182,6 +198,8 @@ struct MoveActorDeltaPacket_: Packet {
 
 // TextPacket.
 struct TextPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_Text;
+
   TextPacket_();
 
   // Message type.

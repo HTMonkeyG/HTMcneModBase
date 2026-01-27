@@ -17,6 +17,8 @@
 
 typedef void (__fastcall *PFN_Packet_Packet)(
   Packet *);
+typedef std::shared_ptr<Packet> (__fastcall *PFN_MineraftPackets_createPacket)(
+  McPacketId);
 
 /* Function declarations. */
 
@@ -38,7 +40,17 @@ static const HTAsmSig sigE8_Packet_Packet{
   .offset = 0x10
 };
 
+static const HTAsmSig sigE8_MineraftPackets_createPacket{
+  .sig =
+    "8B D7 48 8D 8D ?  ?  ?  ?  E8 ?  ?  ?  ?  90 48 "
+    "8B 8D ?  ?  ?  ?  48 85 C9 0F 84 ?  ?  ?  ?  48 "
+    "8B 01 ",
+  .indirect = HT_SCAN_E8,
+  .offset = 0x09
+};
+
 static PFN_Packet_Packet fn_Packet_Packet = nullptr;
+static PFN_MineraftPackets_createPacket fn_MineraftPackets_createPacket = nullptr;
 
 /* Functions. */
 
@@ -51,8 +63,11 @@ static HTStatus fnInit_Packet(
 
   fn_Packet_Packet = (PFN_Packet_Packet)HTSigScan(
     &sigE8_Packet_Packet);
+  
+  fn_MineraftPackets_createPacket = (PFN_MineraftPackets_createPacket)HTSigScan(
+    &sigE8_MineraftPackets_createPacket);
 
-  return fn_Packet_Packet
+  return (fn_Packet_Packet && fn_MineraftPackets_createPacket)
     ? HT_SUCCESS
     : HT_FAIL;
 }
@@ -60,6 +75,16 @@ static HTStatus fnInit_Packet(
 // ----------------------------------------------------------------------------
 // [SECTION] PACKET
 // ----------------------------------------------------------------------------
+
+std::shared_ptr<Packet> mcCreateMinecraftPacket(
+  McPacketId id
+) {
+  if (!fn_MineraftPackets_createPacket)
+    return nullptr;
+
+  return fn_MineraftPackets_createPacket(
+    id);
+}
 
 Packet_::Packet_() {
   // Proxy to the game's constructor.
