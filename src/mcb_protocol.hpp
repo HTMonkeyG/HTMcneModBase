@@ -144,6 +144,48 @@ struct ClientboundMapItemDataPacket_: Packet {
   bool isLockedMap;
 };
 
+// CommandRequestPacket.
+struct CommandBlockUpdatePacket_: Packet {
+  static constexpr McPacketId id = McPacketId_CommandBlockUpdate;
+
+  CommandBlockUpdatePacket_() {
+    mcbiPacketConstruct<CommandBlockUpdatePacket_>(this);
+  }
+
+  // Command block position.
+  BlockPos pos;
+
+  // Command block mode.
+  i32 commandBlockMode;
+
+  // Is redstone if true.
+  bool redstoneMode;
+
+  // Is conditional if true.
+  bool isConditional;
+
+  // Command block minecart id.
+  u64 actorId;
+
+  // Command in the command block.
+  std::string commmand;
+
+  // The last output string.
+  std::string lastOutput;
+
+  // Command block name.
+  std::string name;
+
+  // Tick delay.
+  u32 tickDelay;
+
+  // Do track output if true.
+  bool trackOutput;
+
+  // Execute on the first tick.
+  bool executeOnFirstTick;
+};
+
 // CommandOutputPacket.
 struct CommandOutputPacket_: Packet {
   static constexpr McPacketId id = McPacketId_CommandOutput;

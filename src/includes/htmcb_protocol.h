@@ -435,6 +435,11 @@ typedef struct MapInfoRequestPacket_ MapInfoRequestPacket;
 // "slash" command execution, client to server.
 typedef struct CommandRequestPacket_ CommandRequestPacket;
 
+// Command block update (78).
+//
+// Sent when you close the command block screen on the client.
+typedef struct CommandBlockUpdatePacket_ CommandBlockUpdatePacket;
+
 // Command output packet (79).
 //
 // "slash" command execution, server to client.
