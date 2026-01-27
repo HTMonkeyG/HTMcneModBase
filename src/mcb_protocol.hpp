@@ -63,7 +63,7 @@ struct MapDecoration_ {
 };
 
 struct MapTrackedActor_ {
-  i32 type;
+  MapItemTrackedActorType type;
   u64 uniqueId;
   i32 blockX;
   u32 blockY;

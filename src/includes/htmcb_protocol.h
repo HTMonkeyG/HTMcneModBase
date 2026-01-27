@@ -78,6 +78,7 @@ enum InteractAction_ {
   InteractAction_OpenInventory = 6
 };
 
+// Map decoration types.
 typedef int MapDecorationType;
 enum MapDecorationType_ {
   MapDecorationType_MarkerWhite = 0,
@@ -113,11 +114,21 @@ enum MapDecorationType_ {
   MapDecorationType_ItemFrame = MapDecorationType_MarkerGreen
 };
 
+// Map item data flags.
 typedef char MapItemDataFlags;
 enum MapItemDataFlags_ {
   MapItemDataFlags_TextureUpdate = 1 << 1,
   MapItemDataFlags_DecorationUpdate = 1 << 2,
   MapItemDataFlags_Creation = 1 << 3,
+};
+
+// Map actor mark types.
+typedef int MapItemTrackedActorType;
+enum MapItemTrackedActorType_ {
+  MapItemTrackedActorType_Entity = 0,
+  MapItemTrackedActorType_BlockEntity = 1,
+  MapItemTrackedActorType_Other = 2,
+  MapItemTrackedActorType_COUNT = 3
 };
 
 // All avaliable (not deprecated) packet ids.

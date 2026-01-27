@@ -60,6 +60,9 @@ extern "C" {
 // Fired when received the return value of a sent command.
 #define mcbEventOnCommandOutput mcbMakeNamespace("onCommandOutput")
 
+// In-game types.
+#include "htmcb_game.h"
+
 // ----------------------------------------------------------------------------
 // [SECTION] GAME
 // ----------------------------------------------------------------------------
