@@ -86,7 +86,9 @@ struct MoveActorDeltaData_ {
 struct AddPlayerPacket_: Packet {
   static constexpr McPacketId id = McPacketId_AddPlayer;
 
-  AddPlayerPacket_();
+  AddPlayerPacket_() {
+    mcbiPacketConstruct<AddPlayerPacket_>(this);
+  }
 
   u64 uuid[2];
   std::string playerName;
@@ -102,7 +104,9 @@ struct AddPlayerPacket_: Packet {
 struct ClientboundMapItemDataPacket_: Packet {
   static constexpr McPacketId id = McPacketId_MapData;
 
-  ClientboundMapItemDataPacket_();
+  ClientboundMapItemDataPacket_() {
+    mcbiPacketConstruct<ClientboundMapItemDataPacket_>(this);
+  }
 
   // Map unique id list.
   std::vector<u64> mapIdList;
@@ -144,7 +148,9 @@ struct ClientboundMapItemDataPacket_: Packet {
 struct CommandOutputPacket_: Packet {
   static constexpr McPacketId id = McPacketId_CommandOutput;
 
-  CommandOutputPacket_();
+  CommandOutputPacket_() {
+    mcbiPacketConstruct<CommandOutputPacket_>(this);
+  };
 
   // Command origin.
   CommandOriginData originData;
@@ -157,7 +163,9 @@ struct CommandOutputPacket_: Packet {
 struct CommandRequestPacket_: Packet {
   static constexpr McPacketId id = McPacketId_CommandRequest;
 
-  CommandRequestPacket_();
+  CommandRequestPacket_() {
+    mcbiPacketConstruct<CommandRequestPacket_>(this);
+  };
 
   // Requested "slash" command string.
   std::string command;
@@ -175,7 +183,9 @@ struct CommandRequestPacket_: Packet {
 struct InteractPacket_: Packet {
   static constexpr McPacketId id = McPacketId_Interact;
 
-  InteractPacket_();
+  InteractPacket_() {
+    mcbiPacketConstruct<InteractPacket_>(this);
+  }
 
   InteractPacketAction action;
   u64 actorId;
@@ -186,7 +196,9 @@ struct InteractPacket_: Packet {
 struct MapInfoRequestPacket_: Packet {
   static constexpr McPacketId id = McPacketId_MapInfoRequest;
 
-  MapInfoRequestPacket_();
+  MapInfoRequestPacket_() {
+    mcbiPacketConstruct<MapInfoRequestPacket_>(this);
+  }
 
   // Map unique id.
   u64 mapUniqueId;
@@ -201,7 +213,9 @@ struct MapInfoRequestPacket_: Packet {
 struct MapCreateLockedCopyPacket_: Packet {
   static constexpr McPacketId id = McPacketId_MapCreateLockedCopy;
 
-  MapCreateLockedCopyPacket_();
+  MapCreateLockedCopyPacket_() {
+    mcbiPacketConstruct<MapCreateLockedCopyPacket_>(this);
+  }
 
   // Map unique id.
   u64 originalMapId;
@@ -214,7 +228,9 @@ struct MapCreateLockedCopyPacket_: Packet {
 struct MoveActorDeltaPacket_: Packet {
   static constexpr McPacketId id = McPacketId_MoveDeltaActor;
 
-  MoveActorDeltaPacket_();
+  MoveActorDeltaPacket_() {
+    mcbiPacketConstruct<MoveActorDeltaPacket_>(this);
+  }
 
   MoveActorDeltaData data;
 };
@@ -223,7 +239,9 @@ struct MoveActorDeltaPacket_: Packet {
 struct TextPacket_: Packet {
   static constexpr McPacketId id = McPacketId_Text;
 
-  TextPacket_();
+  TextPacket_() {
+    mcbiPacketConstruct<TextPacket_>(this);
+  }
 
   // Message type.
   TextPacketType messageType;
