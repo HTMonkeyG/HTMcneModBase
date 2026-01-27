@@ -20,6 +20,8 @@ MCB_API_ATTR HTStatus MCB_API mcbSendChatMessage(
   TextPacket tp;
 
   tp.messageType = TextPacketType_Chat;
+  // This line will be replaced by the game server automatically.
+  tp.playerName = "HTMCB";
 
   if (!maxLen) {
     if (strlen(message) >= 0x10000)
