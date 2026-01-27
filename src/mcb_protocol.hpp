@@ -53,6 +53,23 @@ struct CommandOutput_ {
   int successCount;
 };
 
+struct MapDecoration_ {
+  MapDecorationType type;
+  u08 rotation;
+  u08 x;
+  u08 y;
+  std::string label;
+  COLORREF color;
+};
+
+struct MapTrackedActor_ {
+  i32 type;
+  u64 uniqueId;
+  i32 blockX;
+  u32 blockY;
+  i32 blockZ;
+};
+
 struct MoveActorDeltaData_ {
   u64 actorId;
   MoveActorDeltaHeader flags;
@@ -79,6 +96,48 @@ struct AddPlayerPacket_: Packet {
   f32 velocity[3];
   f32 rotation[2];
   f32 yHeadRotation;
+};
+
+// ClientboundMapItemDataPacket, also MapItemDataPacket.
+struct ClientboundMapItemDataPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_MapData;
+
+  ClientboundMapItemDataPacket_();
+
+  // Map unique id list.
+  std::vector<u64> mapIdList;
+
+  // Map scale.
+  char scale;
+
+  // Map decorations.
+  std::vector<MapDecoration> mapDecorations;
+
+  // Map tracked actor ids.
+  std::vector<MapTrackedActor> mapTrackedActor;
+
+  // Texture coords.
+  i64 xCoord;
+  i64 yCoord;
+
+  // Map origin coords.
+  i64 mapOrigin[3];
+
+  // Map dimension.
+  i08 dimension;
+
+  // Updated texture size.
+  int textureWidth;
+  int textureHeight;
+
+  // Type flags.
+  MapItemDataFlags typeFlags;
+
+  // Updated pixels.
+  std::vector<COLORREF> pixels;
+
+  // Is locked.
+  bool isLockedMap;
 };
 
 // CommandOutputPacket.
@@ -139,7 +198,7 @@ struct MapInfoRequestPacket_: Packet {
 };
 
 // MapCreateLockedCopyPacket.
-struct MapCreateLockedCopyPacket_ {
+struct MapCreateLockedCopyPacket_: Packet {
   static constexpr McPacketId id = McPacketId_MapCreateLockedCopy;
 
   MapCreateLockedCopyPacket_();

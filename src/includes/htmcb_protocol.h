@@ -78,6 +78,48 @@ enum InteractAction_ {
   InteractAction_OpenInventory = 6
 };
 
+typedef int MapDecorationType;
+enum MapDecorationType_ {
+  MapDecorationType_MarkerWhite = 0,
+  MapDecorationType_MarkerGreen = 1,
+  MapDecorationType_MarkerRed = 2,
+  MapDecorationType_MarkerBlue = 3,
+  MapDecorationType_XWhite = 4,
+  MapDecorationType_TriangleRed = 5,
+  MapDecorationType_SquareWhite = 6,
+  MapDecorationType_MarkerSign = 7,
+  MapDecorationType_MarkerPink = 8,
+  MapDecorationType_MarkerOrange = 9,
+  MapDecorationType_MarkerYellow = 10,
+  MapDecorationType_MarkerTeal = 11,
+  MapDecorationType_TriangleGreen = 12,
+  MapDecorationType_SmallSquareWhite = 13,
+  MapDecorationType_Mansion = 14,
+  MapDecorationType_Monument = 15,
+  MapDecorationType_NoDraw = 16,
+  MapDecorationType_VillageDesert = 17,
+  MapDecorationType_VillagePlains = 18,
+  MapDecorationType_VillageSavanna = 19,
+  MapDecorationType_VillageSnowy = 20,
+  MapDecorationType_VillageTaiga = 21,
+  MapDecorationType_JungleTemple = 22,
+  MapDecorationType_WitchHut = 23,
+  MapDecorationType_TrialChambers = 24,
+  MapDecorationType_Count = 25,
+  MapDecorationType_Player = MapDecorationType_MarkerWhite,
+  MapDecorationType_PlayerOffMap = MapDecorationType_SquareWhite,
+  MapDecorationType_PlayerOffLimits = MapDecorationType_SmallSquareWhite,
+  MapDecorationType_PlayerHidden = MapDecorationType_NoDraw,
+  MapDecorationType_ItemFrame = MapDecorationType_MarkerGreen
+};
+
+typedef char MapItemDataFlags;
+enum MapItemDataFlags_ {
+  MapItemDataFlags_TextureUpdate = 1 << 1,
+  MapItemDataFlags_DecorationUpdate = 1 << 2,
+  MapItemDataFlags_Creation = 1 << 3,
+};
+
 // All avaliable (not deprecated) packet ids.
 typedef int McPacketId;
 enum McPacketId_ {
@@ -334,6 +376,10 @@ typedef struct CommandOutput_ CommandOutput;
 
 typedef struct CommandOutputMessage_ CommandOutputMessage;
 
+typedef struct MapDecoration_ MapDecoration;
+
+typedef struct MapTrackedActor_ MapTrackedActor;
+
 typedef struct MoveActorDeltaData_ MoveActorDeltaData;
 
 // ----------------------------------------------------------------------------
@@ -361,17 +407,17 @@ typedef struct AddPlayerPacket_ AddPlayerPacket;
 // of purposes.
 typedef struct InteractPacket_ InteractPacket;
 
+// Map Item Data (67).
+//
+// This is sent either if the user is creating a new map, if a map that exists
+// cannot be found, or if the user is creating a locked copy of a map.
+typedef struct ClientBoundMapItemDataPacket_ ClientBoundMapItemDataPacket;
+
 // MapInfoRequestPacket (68).
 //
 // In the case of the client being unable to find map data for a map item it
 // sends a uuid for a map to the server.
 typedef struct MapInfoRequestPacket_ MapInfoRequestPacket;
-
-// MoveActorDeltaPacket (111).
-//
-// This packet is all the deltas of actors position, rotation, and head rotation.
-// This is used for all actors.
-typedef struct MoveActorDeltaPacket_ MoveActorDeltaPacket;
 
 // Command request packet (77).
 //
@@ -382,6 +428,12 @@ typedef struct CommandRequestPacket_ CommandRequestPacket;
 //
 // "slash" command execution, server to client.
 typedef struct CommandOutputPacket_ CommandOutputPacket;
+
+// MoveActorDeltaPacket (111).
+//
+// This packet is all the deltas of actors position, rotation, and head rotation.
+// This is used for all actors.
+typedef struct MoveActorDeltaPacket_ MoveActorDeltaPacket;
 
 // MapCreateLockedCopyPacket (131).
 //
