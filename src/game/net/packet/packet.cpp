@@ -52,6 +52,8 @@ static const HTAsmSig sigE8_MineraftPackets_createPacket{
 static PFN_Packet_Packet fn_Packet_Packet = nullptr;
 static PFN_MineraftPackets_createPacket fn_MineraftPackets_createPacket = nullptr;
 
+std::unordered_map<McPacketId, McbiSavedPacket> gSavedVftable;
+
 /* Functions. */
 
 static HTStatus fnInit_Packet(
@@ -63,13 +65,25 @@ static HTStatus fnInit_Packet(
 
   fn_Packet_Packet = (PFN_Packet_Packet)HTSigScan(
     &sigE8_Packet_Packet);
-  
+
+  if (!fn_Packet_Packet)
+    return HT_FAIL;
+
   fn_MineraftPackets_createPacket = (PFN_MineraftPackets_createPacket)HTSigScan(
     &sigE8_MineraftPackets_createPacket);
 
-  return (fn_Packet_Packet && fn_MineraftPackets_createPacket)
-    ? HT_SUCCESS
-    : HT_FAIL;
+  if (!fn_MineraftPackets_createPacket)
+    return HT_FAIL;
+
+  // Save the vftable of all packet objects.
+  for (McPacketId i = McPacketId_BEGIN; i < McPacketId_END; i++) {
+    auto packet = mcCreateMinecraftPacket(i);
+
+    if (packet)
+      gSavedVftable[i] = McbiSavedPacket{packet, *RCAST(void **)(packet.get())};
+  }
+
+  return HT_SUCCESS;
 }
 
 // ----------------------------------------------------------------------------

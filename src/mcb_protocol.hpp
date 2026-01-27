@@ -65,42 +65,6 @@ struct MoveActorDeltaData_ {
 // [SECTION] PACKETS
 // ----------------------------------------------------------------------------
 
-// Abstract base class for data packets, copied from the game.
-struct Packet_ {
-  static constexpr McPacketId id = McPacketId_END;
-
-  Packet_();
-
-  // Destructor.
-  virtual ~Packet_();
-
-  // Get packet id.
-  virtual i32 getId();
-
-  // Get packet name.
-  virtual std::string getName();
-
-  virtual void *unknown_1();
-
-  // Serialize the packet to binary.
-  virtual void *write(void *);
-
-  // Deserialize the common part of the packet from binary.
-  virtual void *read(void *);
-
-  virtual u08 unknown_2();
-  virtual u08 unknown_3();
-
-  // Deserialize the rest of the packet from binary.
-  virtual void *_read(void *);
-
-  u64 unk_1;
-  char subClientId;
-  u64 unk_2;
-  void *handler;
-  u64 unk_3;
-};
-
 // AddPlayerPacket.
 struct AddPlayerPacket_: Packet {
   static constexpr McPacketId id = McPacketId_AddPlayer;

@@ -3,9 +3,9 @@
 #pragma warning(disable: 26495)
 
 // ----------------------------------------------------------------------------
-// [SECTION] COMMAND_REQUEST_PACKET
+// [SECTION] ADD_PLAYER_PACKET
 // ----------------------------------------------------------------------------
 
-CommandRequestPacket::CommandRequestPacket_() {
-  mcbiPacketConstruct<CommandRequestPacket>(this);
+AddPlayerPacket::AddPlayerPacket_() {
+  mcbiPacketConstruct<AddPlayerPacket>(this);
 }

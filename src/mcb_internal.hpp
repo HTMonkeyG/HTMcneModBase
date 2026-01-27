@@ -222,70 +222,72 @@ McbPacketFilterResult mcbiFilterIncomingPacket(
 // [SECTION] GAME/NET/PACKET/FIELDS
 // ----------------------------------------------------------------------------
 
-/*
-// Initializer class especially for packet fields.
-class McbiPacketFields {
-public:
-  using PFN_DoInit = HTStatus (*)(
-    HMODULE, const McbiModInitializer *);
 
-  static inline const McbiModInitializer *list() {
-    return McbiModInitializer::p;
-  }
-
-  static HTStatus setupAll(
-    HMODULE hModuleDll);
-
-  // Register a initializer.
-  McbiPacketFields(
-    const char *packetName,
-    McPacketId packetId,
-  ) 
-    : function(_function)
-    , name(_name)
-  {
-    prev = McbiPacketFields::p;
-    McbiPacketFields::p = this;
-  }
-
-  ~McbiPacketFields() = default;
-
-  inline const McbiPacketFields *getPrev() const {
-    return prev;
-  }
-
-  inline const char *getName() const {
-    return name;
-  }
-
-  HTStatus operator()(
-    HMODULE hModuleDll
-  ) const {
-    if (function)
-      return function(hModuleDll, this);
-    else
-      return HT_FAIL;
-  }
-
-private:
-  static inline McbiPacketFields *p = nullptr;
-
-  McbiPacketFields *prev;
-  PFN_DoInit function;
-  const char *name;
-
-  void *operator new(size_t) = delete;
-  static void* operator new[](size_t) = delete;
-  void operator delete(void *) = delete;
-  void operator delete[](void *) = delete;
-
-  McbiPacketFields(const McbiPacketFields &) = delete;
-  McbiPacketFields &operator=(const McbiPacketFields &) = delete;
-};*/
 
 // ----------------------------------------------------------------------------
 // [SECTION] GAME/NET/PACKET
 // ----------------------------------------------------------------------------
+
+using McbiSavedPacket = std::pair<std::shared_ptr<Packet>, void *>;
+
+// Pre-saved vftable.
+extern std::unordered_map<McPacketId, McbiSavedPacket> gSavedVftable;
+
+// Construct from a pre-saved Packet object.
+// The template type passed in must be a subclass of the packet object.
+template<typename T>
+void mcbiPacketConstruct(
+  T *pPacket
+) {
+  auto it = gSavedVftable.find(T::id);
+
+  if (it != gSavedVftable.end()) {
+    // Copy the Packet object (virtual function and handler) constructed
+    // by the game.
+    // To prevent resource ownership conflicts, members of subclasses are
+    // not copied.
+    memcpy(
+      RCAST(void *)(pPacket),
+      RCAST(void *)(it->second.first.get()),
+      sizeof(Packet));
+  }
+}
+
+// Abstract base class for data packets, copied from the game.
+struct Packet_ {
+  static constexpr McPacketId id = McPacketId_END;
+
+  Packet_();
+
+  // Destructor.
+  virtual ~Packet_();
+
+  // Get packet id.
+  virtual i32 getId();
+
+  // Get packet name.
+  virtual std::string getName();
+
+  virtual void *unknown_1();
+
+  // Serialize the packet to binary.
+  virtual void *write(void *);
+
+  // Deserialize the common part of the packet from binary.
+  virtual void *read(void *);
+
+  virtual u08 unknown_2();
+  virtual u08 unknown_3();
+
+  // Deserialize the rest of the packet from binary.
+  virtual void *_read(void *);
+
+  u64 unk_1;
+  char subClientId;
+  u64 unk_2;
+  void *handler;
+  u64 unk_3;
+};
 
 // Bedrock Protocol.
 #include "mcb_protocol.hpp"
