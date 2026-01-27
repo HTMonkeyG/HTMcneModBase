@@ -115,7 +115,7 @@ static void hook_LoopbackPacketSender_send(
 MCB_API_ATTR HTStatus MCB_API mcbPacketSendToServer(
   Packet *packet
 ) {
-  if (!sfn_LoopbackPacketSender_send.fn || !gLoopbackPacketSenderC)
+  if (!sfn_LoopbackPacketSender_send.fn || !gLoopbackPacketSenderC || !packet)
     return HT_FAIL;
 
   ((PFN_LoopbackPacketSender_send)sfn_LoopbackPacketSender_send.fn)(
@@ -128,7 +128,7 @@ MCB_API_ATTR HTStatus MCB_API mcbPacketSendToServer(
 MCB_API_ATTR HTStatus MCB_API mcbPacketSendBroadcast(
   Packet *packet
 ) {
-  if (!sfn_LoopbackPacketSender_send.fn || !gLoopbackPacketSenderS)
+  if (!sfn_LoopbackPacketSender_send.fn || !gLoopbackPacketSenderS || !packet)
     return HT_FAIL;
 
   ((PFN_LoopbackPacketSender_send)sfn_LoopbackPacketSender_send.fn)(
