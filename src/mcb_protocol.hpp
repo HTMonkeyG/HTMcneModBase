@@ -8,6 +8,7 @@
 #define __MCB_PROTOCOL_H__
 
 #include "mcb_internal.hpp"
+#include "mcb_game.h"
 
 // ----------------------------------------------------------------------------
 // [SECTION] TYPES
@@ -53,6 +54,18 @@ struct CommandOutput_ {
   int successCount;
 };
 
+struct ItemStackNetIdVariant {
+  // We don't care about the vftable, unless you try to construct this struct
+  // by yourself.
+  virtual ~ItemStackNetIdVariant() = default;
+  virtual void clientInit(void *) { };
+  virtual void clientInit() { };
+
+  int id;
+  int unk_1;
+  char type;
+};
+
 struct MapDecoration_ {
   MapDecorationType type;
   u08 rotation;
@@ -76,6 +89,13 @@ struct MoveActorDeltaData_ {
   f32 position[3];
   i08 rotation[2];
   i08 rotateYHead;
+};
+
+struct NetworkItemStackDescriptor: ItemDescriptorCount {
+  bool includeNetId;
+  ItemStackNetIdVariant netIdVariant;
+  int blockRuntimeId;
+  std::string userData;
 };
 
 // ----------------------------------------------------------------------------
@@ -153,10 +173,10 @@ struct CommandBlockUpdatePacket_: Packet {
   }
 
   // Command block position.
-  BlockPos pos;
+  NetworkBlockPos pos;
 
   // Command block mode.
-  i32 commandBlockMode;
+  i16 commandBlockMode;
 
   // Is redstone if true.
   bool redstoneMode;
@@ -184,6 +204,9 @@ struct CommandBlockUpdatePacket_: Packet {
 
   // Execute on the first tick.
   bool executeOnFirstTick;
+
+  // True if the updated command "block" is a block.
+  bool isBlock;
 };
 
 // CommandOutputPacket.
@@ -264,6 +287,31 @@ struct MapCreateLockedCopyPacket_: Packet {
 
   // Map unique id.
   u64 newMapId;
+};
+
+// MobEquipmentPacket.
+struct MobEquipmentPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_PlayerEquipment;
+
+  MobEquipmentPacket_() {
+    mcbiPacketConstruct<MobEquipmentPacket_>(this);
+  }
+
+  // Player id.
+  u64 actorId;
+
+  // Item.
+  NetworkItemStackDescriptor item;
+
+  // The data read from binary data.
+  i32 _slot;
+  i32 _selectedSlot;
+  i08 _containerId;
+
+  // The data actually write by MobEquipmentPacket::write().
+  i08 slot;
+  i08 selectedSlot;
+  i08 containerId;
 };
 
 // MoveActorDeltaPacket.

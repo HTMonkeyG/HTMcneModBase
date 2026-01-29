@@ -49,6 +49,8 @@
 // [SECTION] MOD
 // ----------------------------------------------------------------------------
 
+#include "mcb_game.h"
+
 // Module handle of McneModBase.
 extern HMODULE hModuleDll;
 

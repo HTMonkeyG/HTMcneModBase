@@ -412,6 +412,13 @@ typedef struct TextPacket_ TextPacket;
 // players.
 typedef struct AddPlayerPacket_ AddPlayerPacket;
 
+// Mob Equipment (31).
+//
+// A bunch of things use this both server to client and can still be sent from
+// the client if LocalPlayer's inventory doesn't match the inventory sent 
+// (deprecated pattern).
+typedef struct MobEquipmentPacket_ MobEquipmentPacket;
+
 // Interact (33).
 //
 // Used for inventory button press and in _updateInteraction() for a variety
