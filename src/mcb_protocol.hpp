@@ -164,7 +164,7 @@ struct ClientboundMapItemDataPacket_: Packet {
   bool isLockedMap;
 };
 
-// CommandRequestPacket.
+// CommandBlockUpdatePacket.
 struct CommandBlockUpdatePacket_: Packet {
   static constexpr McPacketId id = McPacketId_CommandBlockUpdate;
 
