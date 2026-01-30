@@ -72,18 +72,14 @@ static inline void savePacketSender(
   if (!sender)
     return;
 
-  if (!gLoopbackPacketSenderS) {
-    i08 isServer = *((i08 *)sender + 40);
-    if (isServer && isServer != -1) {
-      gLoopbackPacketSenderS = sender;
-      mcbLogI("gLoopbackPacketSenderS = 0x%p", gLoopbackPacketSenderS);
-      return;
-    }
-  }
-
-  if (!gLoopbackPacketSenderC && sender != gLoopbackPacketSenderS) {
+  if (sender != gLoopbackPacketSenderC && GetCurrentThreadId() == gMainThreadId) {
     gLoopbackPacketSenderC = sender;
     mcbLogI("gLoopbackPacketSenderC = 0x%p", gLoopbackPacketSenderC);
+  }
+
+  if (sender != gLoopbackPacketSenderS && GetCurrentThreadId() != gMainThreadId) {
+    gLoopbackPacketSenderS = sender;
+    mcbLogI("gLoopbackPacketSenderS = 0x%p", gLoopbackPacketSenderC);
   }
 }
 
