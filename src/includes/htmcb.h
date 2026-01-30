@@ -184,11 +184,12 @@ MCB_API_ATTR HTStatus MCB_API mcbSendChatMessage(
   LPCSTR message,
   UINT32 maxLen);
 
-// Send a command host, just like sending in the chat menu.
+// Send a command to the host, just like sending in the chat menu.
 //
-// The command request's uuid will be saved in `uuid`.
+// The command request's uuid will be saved in `uuid`. Then you can listen to
+// the CommandOutputPacket.
 MCB_API_ATTR HTStatus MCB_API mcbSendCommand(
-  LPCSTR message,
+  LPCSTR command,
   UINT32 maxLen,
   McUuid *uuid);
 

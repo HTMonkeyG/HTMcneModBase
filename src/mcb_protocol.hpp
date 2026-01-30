@@ -98,6 +98,13 @@ struct NetworkItemStackDescriptor: ItemDescriptorCount {
   std::string userData;
 };
 
+struct PlayerBlockActionData {
+  PlayerActionType type;
+
+  BlockPos position;
+  i32 facing;
+};
+
 // ----------------------------------------------------------------------------
 // [SECTION] PACKETS
 // ----------------------------------------------------------------------------
@@ -323,6 +330,51 @@ struct MoveActorDeltaPacket_: Packet {
   }
 
   MoveActorDeltaData data;
+};
+
+// PlayerActionPacket.
+struct PlayerActionPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_PlayerAction;
+
+  PlayerActionPacket_() {
+    mcbiPacketConstruct<PlayerActionPacket_>(this);
+  }
+
+  NetworkBlockPos blockPos;
+  NetworkBlockPos resultPos;
+  i32 face;
+  PlayerActionType action;
+  u64 playerId;
+};
+
+// Player auth input packet.
+struct PlayerAuthInputPacket_: Packet {
+  static constexpr McPacketId id = McPacketId_PlayerAuthInput;
+
+  PlayerAuthInputPacket_() {
+    mcbiPacketConstruct<PlayerAuthInputPacket_>(this);
+  }
+
+  v2f playerRotation;
+  v3f playerPosition;
+  f32 playerHeadRotation;
+  v3f posDelta;
+  char unk_1[2];
+  v2f unk_2;
+  char unk_3[3];
+  v2f vehicleRotation;
+  v2f analogMoveVector;
+  v2f moveVector;
+  v3f vrGazeDirection;
+  u64 inputData;
+  i32 inputMode;
+  i32 playMode;
+  i32 newInteractionModel;
+  u64 clientTick;
+  void *itemUseTransaction;
+  void *itemStackRequestData;
+  std::vector<PlayerBlockActionData> blockActions;
+  void *clientPredictedVehicle;
 };
 
 // TextPacket.

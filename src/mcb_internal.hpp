@@ -45,6 +45,9 @@
 #define mcbLogW(text, ...) HTTellText("[htmcb]§e[WARN] " text, ##__VA_ARGS__)
 #define mcbLogE(text, ...) HTTellText("[htmcb]§c[ERR] " text, ##__VA_ARGS__)
 
+#define v2f Vec2
+#define v3f Vec3
+
 // ----------------------------------------------------------------------------
 // [SECTION] MOD
 // ----------------------------------------------------------------------------

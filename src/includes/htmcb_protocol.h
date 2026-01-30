@@ -360,6 +360,49 @@ enum MoveActorDeltaHeader_ {
   MoveActorDeltaHeader_RotYHead = 1 << 5,
 };
 
+typedef int PlayerActionType;
+enum PlayerActionType_ {
+  PlayerActionType_Unknown = -1,
+  PlayerActionType_StartDestroyBlock = 0,
+  PlayerActionType_AbortDestroyBlock = 1,
+  PlayerActionType_StopDestroyBlock = 2,
+  PlayerActionType_GetUpdatedBlock = 3,
+  PlayerActionType_DropItem = 4,
+  PlayerActionType_StartSleeping = 5,
+  PlayerActionType_StopSleeping = 6,
+  PlayerActionType_Respawn = 7,
+  PlayerActionType_StartJump = 8,
+  PlayerActionType_StartSprinting = 9,
+  PlayerActionType_StopSprinting = 10,
+  PlayerActionType_StartSneaking = 11,
+  PlayerActionType_StopSneaking = 12,
+  PlayerActionType_CreativeDestroyBlock = 13,
+  PlayerActionType_ChangeDimensionAck = 14,
+  PlayerActionType_StartGliding = 15,
+  PlayerActionType_StopGliding = 16,
+  PlayerActionType_DenyDestroyBlock = 17,
+  PlayerActionType_CrackBlock = 18,
+  PlayerActionType_ChangeSkin = 19,
+  //PlayerActionType_DEPRECATED_UpdatedEnchantingSeed = 20,
+  PlayerActionType_StartSwimming = 21,
+  PlayerActionType_StopSwimming = 22,
+  PlayerActionType_StartSpinAttack = 23,
+  PlayerActionType_StopSpinAttack = 24,
+  PlayerActionType_InteractWithBlock = 25,
+  PlayerActionType_PredictDestroyBlock = 26,
+  PlayerActionType_ContinueDestroyBlock = 27,
+  PlayerActionType_StartItemUseOn = 28,
+  PlayerActionType_StopItemUseOn = 29,
+  PlayerActionType_HandledTeleport = 30,
+  PlayerActionType_MissedSwing = 31,
+  PlayerActionType_StartCrawling = 32,
+  PlayerActionType_StopCrawling = 33,
+  PlayerActionType_StartFlying = 34,
+  PlayerActionType_StopFlying = 35,
+  PlayerActionType_ClientAckServerData = 36,
+  PlayerActionType_COUNT = 37
+};
+
 // Type of the TextPacket.
 typedef char TextPacketType;
 enum TextPacketType_ {
@@ -425,6 +468,12 @@ typedef struct MobEquipmentPacket_ MobEquipmentPacket;
 // of purposes.
 typedef struct InteractPacket_ InteractPacket;
 
+// PlayerActionPacket (36).
+//
+// Sent from the client whenever the player performs an action (dashing,
+// undashing, use an item, mine/hit, use a block, etc).
+typedef struct PlayerActionPacket_ PlayerActionPacket;
+
 // Map Item Data (67).
 //
 // This is sent either if the user is creating a new map, if a map that exists
@@ -463,5 +512,11 @@ typedef struct MoveActorDeltaPacket_ MoveActorDeltaPacket;
 // Ask server to create a locked map. This is fired when the user locks a map
 // item utilizing the Cartography Table in game.
 typedef struct MapCreateLockedCopyPacket_ MapCreateLockedCopyPacket;
+
+// PlayerAuthInputPacket (144).
+//
+// Added for Server Authoritative Movement to sync all player input with the
+// server.
+typedef struct PlayerAuthInputPacket_ PlayerAuthInputPacket;
 
 #endif
